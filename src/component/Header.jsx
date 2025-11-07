@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import ToggleTheme from "./ui/ThemeToggle"; // ✅ your toggle component
+import Logo from "./ui/Logo";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,41 +39,47 @@ const Header = () => {
     >
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo */}
-        <div className="text-2xl font-bold cursor-pointer text-textPrimary">
-          Cyber Nexus
+        <div className="w-auto h-12">
+          <Logo className="w-full h-full fill-current text-textPrimary" />
         </div>
 
         {/* Right-side controls */}
         <div className="flex items-center gap-3">
-          <ToggleTheme />
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-6">
+            <button className="text-textPrimary hover:text-primary transition">
+              Home
+            </button>
+            <button className="text-textPrimary hover:text-primary transition">
+              Team
+            </button>
+            <button className="text-textPrimary hover:text-primary transition">
+              Events
+            </button>
+            <button className="text-textPrimary hover:text-primary transition">
+              Blogs
+            </button>
+            <button className="text-textPrimary hover:text-primary transition">
+              Projects
+            </button>
+          </nav>
+
+          <div className="hidden md:flex"> 
+            <ToggleTheme />
+          </div>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6">
-          <button className="text-textPrimary hover:text-primary transition">
-            Home
-          </button>
-          <button className="text-textPrimary hover:text-primary transition">
-            Team
-          </button>
-          <button className="text-textPrimary hover:text-primary transition">
-            Events
-          </button>
-          <button className="text-textPrimary hover:text-primary transition">
-            Blogs
-          </button>
-          <button className="text-textPrimary hover:text-primary transition">
-            Projects
-          </button>
-        </nav>
-
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-textPrimary hover:text-primary transition"
-          onClick={toggleMenu}
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        <div className="md:hidden flex items-center gap-1"> 
+          <ToggleTheme /> 
+
+          <button
+            className="text-textPrimary hover:text-primary transition"
+            onClick={toggleMenu}
+          >
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation Menu */}
