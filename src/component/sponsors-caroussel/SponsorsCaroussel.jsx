@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
-import { Sparkles, Zap } from "lucide-react";
+import { Handshake, Coins } from "lucide-react";
 
 const defaultSponsors = [
   {
@@ -57,9 +57,9 @@ export default function SponsorsSection({ sponsors = defaultSponsors, loading = 
         {/* Header (mirrors ProjectsSection sizes) */}
         <div className={`text-center space-y-3 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-full text-primary text-sm font-semibold border border-primary/20 shadow-md">
-            <Sparkles className="w-4 h-4 animate-pulse" />
+            <Handshake className="w-4 h-4 animate-pulse" />
             <span>Built with partners</span>
-            <Zap className="w-4 h-4" />
+            <Coins className="w-4 h-4" />
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-bold text-base-content">
