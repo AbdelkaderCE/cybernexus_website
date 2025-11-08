@@ -7,27 +7,34 @@ import ProjectsSection from "./component/projects-section/ProjectsSection";
 import Separator from "./component/ui/Separator";
 
 function App() {
+  const handleScrollComponent = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-navyDark to-purpleDeep">
-      <Header />
+      <Header handleScrollComponent={handleScrollComponent} />
       {/* Hero Section */}
-      <section id="hero">
+      <section id="Hero">
         <HeroSection />
       </section>
       <Separator />
       {/* Blog Section */}
-      <section id="blog">
+      <section id="Blog">
         <BlogSection languageCode="en" />
       </section>
       <Separator />
       {/* Projects Section */}
 
-      <section id="projects">
+      <section id="Projects">
         <ProjectsSection />
       </section>
       <Separator />
       {/* Sponsors Carousel */}
-      <section id="sponsors">
+      <section id="Sponsors">
         <SponsorsCarousel />
       </section>
       <Separator />

@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import ToggleTheme from "./ui/ThemeToggle"; // ✅ your toggle component
 import Logo from "./ui/Logo";
 
-const Header = () => {
+const Header = ({ handleScrollComponent }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -45,8 +45,9 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
-          {["Home", "Team", "Events", "Blogs", "Projects"].map((item) => (
+          {["Hero", "Blog", "Projects", "Sponsors"].map((item) => (
             <button
+              onClick={() => handleScrollComponent(item)}
               key={item}
               className="text-base-content hover:text-primary transition"
             >
@@ -72,9 +73,10 @@ const Header = () => {
       {menuOpen && (
         <div className="md:hidden bg-base-100/80 border-t border-accent/20 shadow-md transition-colors duration-300">
           <nav className="flex flex-col items-center py-4 space-y-3">
-            {["Home", "Team", "Events", "Blogs", "Projects"].map((item) => (
+            {["Hero", "Blog", "Projects", "Sponsors"].map((item) => (
               <button
                 key={item}
+                onClick={() => handleScrollComponent(item)}
                 className="text-base-content hover:text-primary transition"
               >
                 {item}
