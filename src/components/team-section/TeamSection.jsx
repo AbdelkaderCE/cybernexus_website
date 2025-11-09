@@ -5,7 +5,7 @@ import ProfileCard from "./ProfileCard";
 export default function TeamSection() {
   const [currentIndex, setCurrentIndex] = useState(3);
 
-  const teamMembers = [ 
+  const teamMembers = [
     {
       id: 1,
       name: "Hafid",
@@ -17,19 +17,19 @@ export default function TeamSection() {
       name: "Hakim Ait Nouri",
       role: "Developement Lead",
       image: "/user01.png",
-    }, 
+    },
     {
       id: 3,
       name: "Kamel AB",
       role: "Video Editor",
       image: "/user04.png",
-    }, 
+    },
     {
       id: 4,
       name: "Catrina",
       role: "Leader",
       image: "/user03.png",
-    }, 
+    },
     {
       id: 5,
       name: "Sofiane Dex",
@@ -53,7 +53,7 @@ export default function TeamSection() {
       name: "Aziz Ben",
       role: "CEO Facebook",
       image: "/user01.png",
-    }, 
+    },
     {
       id: 9,
       name: "Samadoo",
@@ -115,14 +115,14 @@ export default function TeamSection() {
           <h2 className="text-4xl sm:text-5xl font-bold text-base-content">
             Meet Our{" "}
             <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient">
-               Team
+              Team
             </span>
           </h2>
 
           <p className="text-base sm:text-lg text-base-content/70 max-w-2xl mx-auto leading-relaxed">
             Introducing the{" "}
-            <span className="text-primary font-semibold">Talented</span>{" "}
-            Minds Behind Our Innovation 
+            <span className="text-primary font-semibold">Talented</span> Minds
+            Behind Our Innovation
           </p>
         </div>
 
