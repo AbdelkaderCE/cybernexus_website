@@ -27,9 +27,9 @@ function App() {
       <section id="Team Members">
         <TeamSection languageCode="en" />
       </section>
-      
+
       <Separator />
-      
+
       {/* Blog Section */}
       <section id="Blog">
         <BlogSection languageCode="en" />

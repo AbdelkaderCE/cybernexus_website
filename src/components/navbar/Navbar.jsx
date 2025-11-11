@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 import ToggleTheme from "../ui/ThemeToggle";
 import Logo from "../ui/Logo";
-import { Menu, X, Home, BookOpen, FolderGit2, Heart, Mail, Users } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  BookOpen,
+  FolderGit2,
+  Heart,
+  Mail,
+  Users,
+} from "lucide-react";
 
 const Navbar = ({ handleScrollComponent = (item) => console.log(item) }) => {
   const [menuOpen, setMenuOpen] = useState(false);
