@@ -10,10 +10,11 @@ import TeamSection from "./components/team-section/TeamSection";
 import ShipGame from "./components/shipgame/ShipGame";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import "./styles/cyberAnimations.css";
 
 function App() {
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "boyLight",
+    localStorage.getItem("theme") || "boyDark",
   );
   const handleScrollComponent = (id) => {
     const element = document.getElementById(id);

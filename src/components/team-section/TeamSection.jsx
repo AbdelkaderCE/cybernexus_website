@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import {
   Linkedin,
   Github,
+  Terminal,
   Mail,
   Network,
   ChevronLeft,
@@ -16,6 +17,9 @@ import {
 } from "lucide-react";
 import ProfileCard from "./ProfileCard";
 import useGlitchAnimation from "../../hooks/useGlitchAnimation";
+import { TerminalBadge } from "../ui/CyberBackground";
+import { useScrollReveal } from "../../hooks/useGsapAnimation";
+import gsap from "gsap";
 
 const teamMembers = [
   {
@@ -184,7 +188,6 @@ const teamMembers = [
         100% { transform: translateY(0) rotate(-2deg); }
       }
       .animate-network { animation: floatSmall 4s ease-in-out infinite; }
-
       /* Stars layer: use multiple radial-gradients for scattered stars */
       .stars-layer {
         background:
@@ -200,13 +203,11 @@ const teamMembers = [
         animation: twinkle 6s ease-in-out infinite;
         transform-origin: center;
       }
-
       @keyframes twinkle {
         0% { opacity: 0.75; transform: scale(1); }
         50% { opacity: 1; transform: scale(1.02); }
         100% { opacity: 0.75; transform: scale(1); }
       }
-
       @media (prefers-reduced-motion: reduce) {
         .animate-network, .stars-layer { animation: none !important; }
       }
@@ -478,7 +479,6 @@ const teamMembers = [
           100% { transform: translateY(0) scale(1) rotate(-1deg); }
         }
         .animate-crown { animation: crownFloat 4.2s ease-in-out infinite; color: #b45309; } /* amber-600 */
-
         /* stars (full-cover) */
         .stars-layer {
           background:
@@ -496,7 +496,6 @@ const teamMembers = [
           50% { opacity: 1; transform: scale(1.01); }
           100% { opacity: 0.7; transform: scale(1); }
         }
-
         /* confetti: small floating diamond shapes */
         .confetti-layer::before,
         .confetti-layer::after {
@@ -527,7 +526,6 @@ const teamMembers = [
           50% { transform: translateY(-18px) rotate(45deg); opacity: 0.6; }
           100% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
         }
-
         @media (prefers-reduced-motion: reduce) {
           .animate-crown, .stars-layer, .confetti-layer::before, .confetti-layer::after {
             animation: none !important;
@@ -847,12 +845,46 @@ export default function TeamSection() {
     teamMembers.findIndex((m) => m.role === "Club Owner"),
   );
   const [isMobile, setIsMobile] = useState(false);
-  const { ref: glitchRef } = useGlitchAnimation({ repeatDelay: 3 });
+  const titleAnimRef = useRef(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const isDragging = useRef(false);
 
-  // Detect mobile view
+  // Apply glitch effect to "Team" text
+  const { ref: glitchRef } = useGlitchAnimation({ repeatDelay: 3 });
+
+  // Scroll-triggered animations
+  const headerRef = useScrollReveal({ y: 40, duration: 0.8 });
+  const carouselRef = useScrollReveal({
+    y: 50,
+    duration: 0.9,
+    start: "top 85%",
+  });
+
+  // Apply fade animation to title separately
+  useEffect(() => {
+    if (!titleAnimRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set(titleAnimRef.current, { opacity: 0, y: 40 });
+
+      gsap.to(titleAnimRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.3,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: titleAnimRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -888,7 +920,6 @@ export default function TeamSection() {
     isDragging.current = false;
   };
 
-  // Get visible cards
   const getVisibleCards = () => {
     const cards = [];
     const range = isMobile ? 2 : 3;
@@ -907,61 +938,82 @@ export default function TeamSection() {
   };
 
   return (
-    <section className="min-h-screen py-16 px-4 sm:px-6 lg:px-10 bg-gradient-to-b from-base-100 via-base-200/30 to-base-100 relative overflow-hidden flex items-center">
-      {/* Animated background */}
+    <section className="relative min-h-screen py-20 px-4 sm:px-6 lg:px-10 bg-gradient-to-b from-base-100 via-base-200/20 to-base-100 overflow-hidden flex items-center">
+      {/* Animated Cyber Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
         <div
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse"
+          className="absolute bottom-1/4 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse"
           style={{ animationDelay: "1s" }}
+        />
+
+        {/* Grid overlay */}
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
+                            linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+            backgroundSize: "50px 50px",
+          }}
         />
       </div>
 
       <div className="max-w-[1800px] mx-auto space-y-12 w-full relative z-10">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold text-base-content">
+        <div ref={headerRef} className="text-center space-y-6">
+          <div className="mb-4">
+            <TerminalBadge icon={Terminal}>&lt;TEAM_ROSTER&gt;</TerminalBadge>
+          </div>
+
+          <h2
+            ref={titleAnimRef}
+            className="text-4xl sm:text-5xl md:text-6xl font-black text-base-content font-mono tracking-tight"
+          >
             Meet Our{" "}
             <span
               ref={glitchRef}
-              className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient"
+              className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"
             >
               Team
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-base-content/70 max-w-2xl mx-auto leading-relaxed">
-            Introducing the{" "}
-            <span className="text-primary font-semibold">Talented</span> Minds
+
+          <p className="text-base sm:text-lg text-base-content/70 max-w-2xl mx-auto leading-relaxed font-mono">
+            <span className="text-primary">&gt;_</span> The{" "}
+            <span className="text-secondary font-semibold">Talented Minds</span>{" "}
             Behind Our Innovation
           </p>
         </div>
 
         {/* Carousel */}
         <div
+          ref={carouselRef}
           className="relative px-4 sm:px-8 md:px-16 lg:px-24"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Navigation Buttons - Hidden on mobile */}
+          {/* Navigation Buttons */}
           {!isMobile && (
             <>
               <button
                 onClick={handlePrevious}
                 disabled={currentIndex === 0}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-40 w-12 h-12 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary/90 hover:scale-110 transition-all shadow-lg shadow-primary/30 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-40 w-12 h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group"
                 aria-label="Previous team member"
               >
                 <ChevronLeft size={24} />
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
               </button>
 
               <button
                 onClick={handleNext}
                 disabled={currentIndex === teamMembers.length - 1}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-40 w-12 h-12 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary/90 hover:scale-110 transition-all shadow-lg shadow-primary/30 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-40 w-12 h-12 flex items-center justify-center rounded-lg bg-base-200/90 border-2 border-primary/30 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed group"
                 aria-label="Next team member"
               >
                 <ChevronRight size={24} />
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
               </button>
             </>
           )}
@@ -973,7 +1025,6 @@ export default function TeamSection() {
                 const pos = Math.abs(member.position);
                 const isCenterCard = member.position === 0;
 
-                // Simplified card styling calculation
                 const getCardStyle = () => {
                   const styles = isMobile
                     ? [
@@ -1031,47 +1082,24 @@ export default function TeamSection() {
             </div>
           </div>
 
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-8">
+          {/* Dots Indicator - Cyberpunk Style */}
+          <div className="flex justify-center gap-3 mt-8">
             {teamMembers.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`h-2 rounded-full transition-all duration-300 border ${
                   index === currentIndex
-                    ? "w-8 bg-primary"
-                    : "w-2 bg-base-content/30 hover:bg-base-content/50"
+                    ? "w-8 bg-primary border-primary shadow-lg shadow-primary/50"
+                    : "w-2 bg-transparent border-primary/30 hover:border-primary/60"
                 }`}
                 aria-label={`Go to team member ${index + 1}`}
                 aria-current={index === currentIndex ? "true" : "false"}
               />
             ))}
           </div>
-
-          {/* Mobile instruction hint */}
-          {isMobile && (
-            <p className="text-center text-base-content/50 text-sm mt-4 animate-pulse">
-              👈 Swipe to explore team members 👉
-            </p>
-          )}
         </div>
       </div>
-      <style>{`
-      @keyframes gradient {
-              0 %, 100 % { background- position: 0% 50%; }
-            50% {background - position: 100% 50%; }
-      }
-
-            .animate-gradient {
-              background - size: 200% 200%;
-            animation: gradient 3s ease infinite;
-      }
-
-            /* Prevent the nav buttons from shifting when clicked */
-            .btn.btn-circle:active {
-              transform: translateY(-50%) !important;
-      }
-    `}</style>
     </section>
   );
 }
