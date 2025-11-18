@@ -25,8 +25,353 @@ import { useScrollReveal } from "../../hooks/useGsapAnimation";
 import gsap from "gsap";
 
 const teamMembers = [
-  {
+  /* 1 */ {
+    id: 1,
+    name: "Farah",
+    role: "Content Creator",
+    image: "/farah-image-front.png",
+    borderClass: "border-purple-500/50",
+    bgGradientClass: "from-purple-500/10 to-fuchsia-500/5",
+    accentClass: "text-purple-400",
+    iconColor: "text-base-content",
+    iconBgColor: "bg-base-100/10",
+    iconBorderColor: "border-base-content/20",
+    socialLinks: [
+      {
+        icon: Linkedin,
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit",
+      },
+      {
+        icon: Github,
+        label: "GitHub",
+        href: "https://github.com/FarahTechOdyssey",
+      },
+    ],
+    backContent: (
+      <div className="relative w-full h-full flex items-center justify-center p-6 text-center">
+        <div
+          className="absolute inset-0 rounded-3xl pointer-events-none -z-10 overflow-hidden"
+          aria-hidden="true"
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(124,58,237,0.06), rgba(49,46,129,0.03))",
+            }}
+          />
+          <div className="absolute inset-0 stars-layer" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-36 h-36 rounded-full blur-3xl opacity-20 bg-purple-400/30" />
+          </div>
+        </div>
+        <div className="z-10 flex flex-col items-center gap-2">
+          <div
+            className="mx-auto mb-1 w-24 h-24 rounded-full flex items-center justify-center
+                      bg-base-100/60 border border-base-content/10 shadow-md backdrop-blur-sm"
+          >
+            <Network
+              className="w-12 h-12 text-purple-400 animate-network"
+              aria-hidden="true"
+            />
+          </div>
+          <h3 className="text-xl font-bold text-purple-400">Farah</h3>
+          <p className="text-sm text-base-content/80">Content Creator</p>
+          <p className="text-xs text-base-content/70">Master 1 Network</p>
+          <div className="mt-1 text-sm">
+            <p>Navigating the digital cosmos ⭐</p>
+          </div>
+        </div>
+        <style>{`
+          @keyframes floatSmall {
+            0% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-6px) rotate(2deg); }
+            100% { transform: translateY(0) rotate(-2deg); }
+          }
+          .animate-network { animation: floatSmall 4s ease-in-out infinite; }
+          .stars-layer {
+            background:
+              radial-gradient(circle at 8% 18%, rgba(255,255,255,0.95) 0.6px, transparent 1px),
+              radial-gradient(circle at 22% 70%, rgba(255,255,255,0.85) 0.7px, transparent 1px),
+              radial-gradient(circle at 38% 34%, rgba(255,255,255,0.65) 0.6px, transparent 1px),
+              radial-gradient(circle at 62% 14%, rgba(255,255,255,0.7) 0.6px, transparent 1px),
+              radial-gradient(circle at 80% 56%, rgba(255,255,255,0.8) 0.6px, transparent 1px),
+              radial-gradient(circle at 45% 86%, rgba(255,240,200,0.15) 0.8px, transparent 2px);
+            mix-blend-mode: screen;
+            opacity: 0.9;
+            animation: twinkle 6s ease-in-out infinite;
+          }
+          @keyframes twinkle {
+            0% { opacity: 0.75; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+            100% { opacity: 0.75; transform: scale(1); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .animate-network, .stars-layer { animation: none !important; }
+          }
+        `}</style>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(245,230,255,0.10), rgba(250,240,255,0.02))",
+      rimColor: "rgba(168,85,247,0.12)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 22px 60px rgba(120,40,200,0.06)",
+      badge: "CC",
+      badgeClass: "bg-purple-500/15 text-purple-300",
+      animateBack: true,
+      tiltStrength: 14,
+    },
+  },
+
+  /* 2 */ {
     id: 2,
+    name: "Kamel",
+    role: "Content Creator",
+    image: "/kamel-image-front.png",
+    borderClass: "border-purple-500/50",
+    bgGradientClass: "from-purple-500/10 to-fuchsia-500/5",
+    accentClass: "text-purple-400",
+    iconColor: "text-purple-400",
+    iconBgColor: "bg-purple-500/20",
+    iconBorderColor: "border-purple-500/50",
+    socialLinks: [
+      { icon: Mail, label: "Email", href: "mailto:Kamel.mutig14@gmail.com" },
+      {
+        icon: Globe,
+        label: "Portfolio",
+        href: "https://portfolio-78b26d2ur-kamelabas-projects.vercel.app/",
+      },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-purple-500/20 rounded-full flex items-center justify-center">
+          <Video className="w-8 h-8 text-purple-400" />
+        </div>
+        <h3 className="text-xl font-bold text-purple-400">Kamel</h3>
+        <p className="text-sm text-base-content/80">Student</p>
+        <p className="text-xs text-base-content/70">Master GL 1</p>
+        <p className="text-xs">
+          <a href="mailto:Kamel.mutig14@gmail.com">Kamel.mutig14@gmail.com</a>
+        </p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(245,230,255,0.10), rgba(250,240,255,0.02))",
+      rimColor: "rgba(168,85,247,0.12)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 22px 60px rgba(120,40,200,0.06)",
+      badge: "GL",
+      badgeClass: "bg-purple-500/15 text-purple-300",
+      animateBack: true,
+      tiltStrength: 13,
+    },
+  },
+
+  /* 3 */ {
+    id: 3,
+    name: "mlsvmdl",
+    role: "Developer",
+    image: "/mlsvmdl-image-front.jpg",
+    borderClass: "border-red-700/60",
+    bgGradientClass: "from-red-900 to-black",
+    accentClass: "text-white",
+    iconColor: "text-red-300",
+    iconBgColor: "bg-red-800/30",
+    iconBorderColor: "border-red-700/60",
+    socialLinks: [
+      { icon: Github, label: "GitHub", href: "https://github.com/mlsvmdl" },
+    ],
+    backContent: (
+      <div className="text-center space-y-4 w-full text-white">
+        <div className="w-32 h-32 mx-auto rounded-2xl overflow-visible group py-3">
+          <img
+            src="/mlsvmdl-image-back.png"
+            className="w-full h-full object-contain group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+            style={{ animation: "float 3s ease-in-out infinite" }}
+          />
+        </div>
+        <h3 className="text-xl font-bold text-white">mlsvmdl</h3>
+        <p className="text-sm text-white/80">Developer</p>
+        <div className="text-xs text-white space-y-1">
+          <p>☀️ Chitch loves Poppo!</p>
+        </div>
+        <style>{`
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+          }
+        `}</style>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(6,6,6,1) 0%, rgba(36,6,6,0.98) 35%, rgba(80,0,0,0.85) 70%, rgba(0,0,0,1) 100%)",
+      rimColor: "rgba(255,36,36,0.18)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.04), rgba(255,0,0,0.03) 40%, transparent 60%)",
+      glossOpacity: 0.95,
+      shadow: "0 30px 80px rgba(0,0,0,0.65)",
+      badge: "BERSERK",
+      badgeClass: "bg-red-800/30 text-red-300",
+      animateBack: true,
+      tiltStrength: 18,
+      customStyles: { backgroundBlendMode: "multiply" },
+    },
+  },
+
+  /* 4 */ {
+    id: 4,
+    name: "Hadjadj Kawther",
+    role: "Treasurer",
+    image: "kawther-front-image.png",
+    borderClass: "border-purple-500/50",
+    bgGradientClass: "from-purple-500/10 to-pink-500/5",
+    accentClass: "text-purple-400",
+    iconColor: "text-purple-400",
+    iconBgColor: "bg-purple-500/20",
+    iconBorderColor: "border-purple-500/50",
+    socialLinks: [
+      {
+        icon: Mail,
+        label: "Email",
+        href: "mailto:kawther.had47@gmail.com",
+      },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-purple-500/20 rounded-full flex items-center justify-center">
+          <Crown className="w-8 h-8 text-purple-400" />
+        </div>
+        <h3 className="text-xl font-bold text-purple-400">Hadjadj Kawther</h3>
+        <p className="text-sm text-base-content/80">Treasurer</p>
+        <p className="text-xs text-base-content/70">Master 1 GL</p>
+        <p className="text-xs">
+          <a href="mailto:kawther.had47@gmail.com">kawther.had47@gmail.com</a>
+        </p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(240,220,255,0.08), rgba(250,235,255,0.02))",
+      rimColor: "rgba(186,85,211,0.12)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 20px 50px rgba(120,0,120,0.08)",
+      badge: "GI",
+      badgeClass: "bg-purple-500/15 text-purple-300",
+      animateBack: true,
+      tiltStrength: 16,
+    },
+  },
+
+  /* 5 */ {
+    id: 5,
+    name: "Bedoui Denia",
+    role: "Designer + HR",
+    image: "/denia-image-front.png",
+    borderClass: "border-amber-500/50",
+    bgGradientClass: "from-amber-500/10 to-yellow-500/5",
+    accentClass: "text-amber-400",
+    iconColor: "text-amber-400",
+    iconBgColor: "bg-amber-500/20",
+    iconBorderColor: "border-amber-500/50",
+    socialLinks: [
+      { icon: Mail, label: "Email", href: "mailto:bedouidenia25@gmail.com" },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-amber-500/20 rounded-full flex items-center justify-center">
+          <Star className="w-8 h-8 text-amber-400" />
+        </div>
+        <h3 className="text-xl font-bold text-amber-400">Bedoui Denia</h3>
+        <p className="text-sm text-base-content/80">Designer + HR</p>
+        <p className="text-xs text-base-content/70">L3</p>
+        <p className="text-xs">
+          <a href="mailto:bedouidenia25@gmail.com">bedouidenia25@gmail.com</a>
+        </p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(255,245,220,0.10), rgba(255,250,235,0.02))",
+      rimColor: "rgba(250,204,21,0.10)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.85,
+      shadow: "0 18px 40px rgba(180,120,20,0.06)",
+      badge: "DES/HR",
+      badgeClass: "bg-amber-500/15 text-amber-300",
+      animateBack: false,
+      tiltStrength: 12,
+    },
+  },
+
+  /* 6 */ {
+    id: 6,
+    name: "Hakim Ait Abderrahim",
+    role: "Developer",
+    image: "/Hakim.jpg",
+    borderClass: "border-blue-500/50",
+    bgGradientClass: "from-blue-500/10 to-cyan-500/5",
+    accentClass: "text-blue-400",
+    iconColor: "text-blue-400",
+    iconBgColor: "bg-blue-500/20",
+    iconBorderColor: "border-blue-500/50",
+    socialLinks: [
+      {
+        icon: Mail,
+        label: "Email",
+        href: "mailto:Hakimaitabderrahim18@gmail.com",
+      },
+      {
+        icon: Globe,
+        label: "Portfolio",
+        href: "https://66ee86e5f20b6d1656809790--preeminent-shortbread-6639a5.netlify.app/",
+      },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-blue-500/20 rounded-full flex items-center justify-center">
+          <Code className="w-8 h-8 text-blue-400" />
+        </div>
+        <h3 className="text-xl font-bold text-blue-400">
+          Hakim Ait Abderrahim
+        </h3>
+        <p className="text-sm text-base-content/80">Developer</p>
+        <p className="text-xs text-base-content/70">Master 2 GL</p>
+        <p className="text-xs">
+          <a href="mailto:Hakimaitabderrahim18@gmail.com">
+            Hakimaitabderrahim18@gmail.com
+          </a>
+        </p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(220,240,255,0.08), rgba(235,250,255,0.02))",
+      rimColor: "rgba(100,149,237,0.12)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 20px 50px rgba(0,60,120,0.08)",
+      badge: "GL",
+      badgeClass: "bg-blue-500/15 text-blue-300",
+      animateBack: true,
+      tiltStrength: 16,
+    },
+  },
+
+  /* 7 */ {
+    id: 7,
     name: "Ait Said Abdelkarim",
     role: "Network Specialist",
     image: "said-image-front.png",
@@ -81,366 +426,160 @@ const teamMembers = [
       tiltStrength: 16,
     },
   },
-  {
-    id: 4,
-    name: "Benzarfa Rania Manel",
-    role: "HR",
-    image: "rania-image-front.png",
-    borderClass: "border-rose-500/50",
-    bgGradientClass: "from-rose-500/10 to-pink-500/5",
-    accentClass: "text-rose-400",
-    iconColor: "text-rose-400",
-    iconBgColor: "bg-rose-500/20",
-    iconBorderColor: "border-rose-500/50",
+
+  /* 8 */ {
+    id: 8,
+    name: "Missoum Hadi Adda",
+    role: "Developer + HR",
+    image: "/Adda.jpg",
+    borderClass: "border-indigo-500/50",
+    bgGradientClass: "from-indigo-500/10 to-blue-500/5",
+    accentClass: "text-indigo-400",
+    iconColor: "text-indigo-400",
+    iconBgColor: "bg-indigo-500/20",
+    iconBorderColor: "border-indigo-500/50",
+    socialLinks: [
+      { icon: Mail, label: "Email", href: "mailto:addajs48@gmail.com" },
+      {
+        icon: Globe,
+        label: "Portfolio",
+        href: "https://addahadi.github.io/Portofolio/",
+      },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-indigo-500/20 rounded-full flex items-center justify-center">
+          <Code className="w-8 h-8 text-indigo-400" />
+        </div>
+        <h3 className="text-xl font-bold text-indigo-400">Missoum Hadi Adda</h3>
+        <p className="text-sm text-base-content/80">Developer + HR</p>
+        <p className="text-xs text-base-content/70">3 LS SI</p>
+        <p className="text-xs">
+          <a href="mailto:addajs48@gmail.com">addajs48@gmail.com</a>
+        </p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(230,235,255,0.10), rgba(245,250,255,0.02))",
+      rimColor: "rgba(99,102,241,0.12)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 22px 60px rgba(30,30,120,0.06)",
+      badge: "DEV/HR",
+      badgeClass: "bg-indigo-500/15 text-indigo-300",
+      animateBack: true,
+      tiltStrength: 15,
+    },
+  },
+
+  /* 9 - CENTER */ {
+    id: 9,
+    name: "Sabrine Boughrab",
+    role: "Club Owner & Leader",
+    image: "/sabrin-image-front.png",
+    borderClass:
+      "border-4 border-fuchsia-500 shadow-[0_0_30px_rgba(217,70,239,0.6)]",
+    bgGradientClass: "from-purple-900 via-fuchsia-900 to-purple-900",
+    accentClass: "text-fuchsia-400",
+    iconColor: "text-fuchsia-300",
+    iconBgColor: "bg-fuchsia-600",
+    iconBorderColor: "border-fuchsia-400",
     socialLinks: [
       {
         icon: Mail,
         label: "Email",
-        href: "mailto:rania.benzarfa@example.com",
-      },
-    ],
-    backContent: (
-      <div className="text-center space-y-3 p-4">
-        <div className="w-16 h-16 mx-auto bg-rose-500/20 rounded-full flex items-center justify-center">
-          <Brain className="w-8 h-8 text-rose-400" />
-        </div>
-        <h3 className="text-xl font-bold text-rose-400">
-          Benzarfa Rania Manel
-        </h3>
-        <p className="text-sm text-base-content/80">AI Specialist</p>
-        <p className="text-xs text-base-content/70">Master 1 AID</p>
-        <p className="text-xs">
-          <a href="mailto:rania.benzarfa@example.com">
-            rania.benzarfa@example.com
-          </a>
-        </p>
-      </div>
-    ),
-    theme: {
-      background:
-        "linear-gradient(180deg, rgba(255,220,240,0.08), rgba(255,235,250,0.02))",
-      rimColor: "rgba(244,63,94,0.12)",
-      gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.9,
-      shadow: "0 20px 50px rgba(120,0,60,0.08)",
-      badge: "AID",
-      badgeClass: "bg-rose-500/15 text-rose-300",
-      animateBack: true,
-      tiltStrength: 16,
-    },
-  },
-  {
-    id: 1,
-    name: "Aziz Ben",
-    role: "Student",
-    image: "aziz-image-front.jpg",
-    borderClass: "border-sky-500/50",
-    bgGradientClass: "from-sky-500/10 to-blue-500/5",
-    accentClass: "text-sky-400",
-    iconColor: "text-sky-400",
-    iconBgColor: "bg-sky-500/20",
-    iconBorderColor: "border-sky-500/50",
-    socialLinks: [
-      {
-        icon: Globe,
-        label: "Portfolio",
-        href: "https://abdelazizbenallou.github.io/Personel_Profilio/",
-      },
-    ],
-    backContent: (
-      <div className="text-center space-y-3 p-4">
-        <div className="w-16 h-16 mx-auto bg-sky-500/20 rounded-full flex items-center justify-center">
-          <Globe className="w-8 h-8 text-sky-400" />
-        </div>
-        <h3 className="text-xl font-bold text-sky-400">Aziz Ben</h3>
-        <p className="text-sm text-base-content/80">Student</p>
-        <p className="text-xs text-base-content/70">Master Networks 1</p>
-      </div>
-    ),
-    theme: {
-      background:
-        "linear-gradient(180deg, rgba(220,245,255,0.10), rgba(230,250,255,0.02))",
-      rimColor: "rgba(56,189,248,0.12)",
-      gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.9,
-      shadow: "0 20px 50px rgba(20,100,150,0.08)",
-      badge: "NET",
-      badgeClass: "bg-sky-500/15 text-sky-300",
-      animateBack: true,
-      tiltStrength: 14,
-    },
-  },
-
-  {
-    id: 2,
-    name: "Kamel",
-    role: "Content Creator",
-    image: "/kamel-image-front.png",
-    borderClass: "border-purple-500/50",
-    bgGradientClass: "from-purple-500/10 to-fuchsia-500/5",
-    accentClass: "text-purple-400",
-    iconColor: "text-purple-400",
-    iconBgColor: "bg-purple-500/20",
-    iconBorderColor: "border-purple-500/50",
-    socialLinks: [
-      { icon: Mail, label: "Email", href: "mailto:Kamel.mutig14@gmail.com" },
-      {
-        icon: Globe,
-        label: "Portfolio",
-        href: "https://portfolio-78b26d2ur-kamelabas-projects.vercel.app/",
-      },
-    ],
-    backContent: (
-      <div className="text-center space-y-3 p-4">
-        <div className="w-16 h-16 mx-auto bg-purple-500/20 rounded-full flex items-center justify-center">
-          <Video className="w-8 h-8 text-purple-400" />
-        </div>
-        <h3 className="text-xl font-bold text-purple-400">Kamel</h3>
-        <p className="text-sm text-base-content/80">Student</p>
-        <p className="text-xs text-base-content/70">Master GL 1</p>
-        <p className="text-xs">
-          <a href="mailto:Kamel.mutig14@gmail.com">Kamel.mutig14@gmail.com</a>
-        </p>
-      </div>
-    ),
-    theme: {
-      background:
-        "linear-gradient(180deg, rgba(245,230,255,0.10), rgba(250,240,255,0.02))",
-      rimColor: "rgba(168,85,247,0.12)",
-      gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.9,
-      shadow: "0 22px 60px rgba(120,40,200,0.06)",
-      badge: "GL",
-      badgeClass: "bg-purple-500/15 text-purple-300",
-      animateBack: true,
-      tiltStrength: 13,
-    },
-  },
-  {
-    id: 11,
-    name: "Farah",
-    role: "Content Creator",
-    image: "/farah-image-front.png",
-    borderClass: "border-purple-500/50",
-    bgGradientClass: "from-purple-500/10 to-fuchsia-500/5",
-    accentClass: "text-purple-400",
-    iconColor: "text-base-content",
-    iconBgColor: "bg-base-100/10",
-    iconBorderColor: "border-base-content/20",
-    socialLinks: [
-      {
-        icon: Linkedin,
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit",
-      },
-      {
-        icon: Github,
-        label: "GitHub",
-        href: "https://github.com/FarahTechOdyssey",
+        href: "mailto:sabrineboughrab@gmail.com",
+        platform: "email",
       },
     ],
     backContent: (
       <div className="relative w-full h-full flex items-center justify-center p-6 text-center">
-        <div
-          className="absolute inset-0 rounded-3xl pointer-events-none -z-10 overflow-hidden"
-          aria-hidden="true"
-        >
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(124,58,237,0.06), rgba(49,46,129,0.03))",
-            }}
-          />
-
-          {/* stars layer fills entire back face */}
-          <div className="absolute inset-0 stars-layer" />
-
-          {/* optional soft glow behind icon (centered) */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-36 h-36 rounded-full blur-3xl opacity-20 bg-purple-400/30" />
-          </div>
-        </div>
-
-        {/* FOREGROUND content (kept above decorations) */}
         <div className="z-10 flex flex-col items-center gap-2">
-          {/* network icon badge */}
-          <div
-            className="mx-auto mb-1 w-24 h-24 rounded-full flex items-center justify-center
-                      bg-base-100/60 border border-base-content/10 shadow-md backdrop-blur-sm"
-          >
-            <Network
-              className="w-12 h-12 text-purple-400 animate-network"
-              aria-hidden="true"
+          <div className="mx-auto mb-2 w-32 h-32 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-800 to-fuchsia-800 border-4 border-fuchsia-400 shadow-2xl shadow-fuchsia-500/70 relative">
+            <Crown className="w-16 h-16 text-yellow-300 animate-crown-purple drop-shadow-[0_0_15px_rgba(253,224,71,0.8)]" />
+            <Star
+              className="absolute top-2 right-2 w-4 h-4 text-yellow-300 animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            />
+            <Star
+              className="absolute bottom-2 left-2 w-3 h-3 text-fuchsia-300 animate-pulse"
+              style={{ animationDelay: "1s" }}
             />
           </div>
-
-          <h3 className="text-xl font-bold text-purple-400">Farah</h3>
-          <p className="text-sm text-base-content/80">Content Creator</p>
-          <p className="text-xs text-base-content/70">Master 1 Network</p>
-
-          <div className="mt-1 text-sm">
-            <p>Navigating the digital cosmos ⭐</p>
+          <h3 className="text-2xl sm:text-3xl font-black text-fuchsia-200 drop-shadow-[0_0_20px_rgba(217,70,239,1)] font-mono tracking-wider">
+            Sabrine Boughrab
+          </h3>
+          <div className="flex items-center gap-2 flex-wrap justify-center">
+            <div className="bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-3 py-1 rounded-full text-xs font-bold border border-fuchsia-400 shadow-lg flex items-center gap-1">
+              <Shield className="w-3 h-3" />
+              Club Owner
+            </div>
+            <div className="bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white px-3 py-1 rounded-full text-xs font-bold border border-purple-400 shadow-lg">
+              1 Master RT
+            </div>
+          </div>
+          <div className="flex gap-2 mt-2">
+            <div className="px-2 py-1 bg-fuchsia-500/20 border border-fuchsia-400/50 rounded text-xs font-mono text-fuchsia-300">
+              STATUS: ELITE
+            </div>
+            <div className="px-2 py-1 bg-purple-500/20 border border-purple-400/50 rounded text-xs font-mono text-purple-300">
+              RANK: LEADER
+            </div>
           </div>
         </div>
-
-        {/* CSS: full-card stars + small animations; respects reduced motion */}
         <style>{`
-      /* subtle floating for the network icon */
-      @keyframes floatSmall {
-        0% { transform: translateY(0) rotate(-2deg); }
-        50% { transform: translateY(-6px) rotate(2deg); }
-        100% { transform: translateY(0) rotate(-2deg); }
-      }
-      .animate-network { animation: floatSmall 4s ease-in-out infinite; }
-      /* Stars layer: use multiple radial-gradients for scattered stars */
-      .stars-layer {
-        background:
-          radial-gradient(circle at 8% 18%, rgba(255,255,255,0.95) 0.6px, transparent 1px),
-          radial-gradient(circle at 22% 70%, rgba(255,255,255,0.85) 0.7px, transparent 1px),
-          radial-gradient(circle at 38% 34%, rgba(255,255,255,0.65) 0.6px, transparent 1px),
-          radial-gradient(circle at 62% 14%, rgba(255,255,255,0.7) 0.6px, transparent 1px),
-          radial-gradient(circle at 80% 56%, rgba(255,255,255,0.8) 0.6px, transparent 1px),
-          /* faint additional noise for depth */
-          radial-gradient(circle at 45% 86%, rgba(255,240,200,0.15) 0.8px, transparent 2px);
-        mix-blend-mode: screen;
-        opacity: 0.9;
-        animation: twinkle 6s ease-in-out infinite;
-        transform-origin: center;
-      }
-      @keyframes twinkle {
-        0% { opacity: 0.75; transform: scale(1); }
-        50% { opacity: 1; transform: scale(1.02); }
-        100% { opacity: 0.75; transform: scale(1); }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .animate-network, .stars-layer { animation: none !important; }
-      }
-    `}</style>
-      </div>
-    ),
-
-    theme: {
-      background:
-        "linear-gradient(180deg, rgba(245,230,255,0.10), rgba(250,240,255,0.02))",
-      rimColor: "rgba(168,85,247,0.12)",
-      gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.9,
-      shadow: "0 22px 60px rgba(120,40,200,0.06)",
-      badge: "CC",
-      badgeClass: "bg-purple-500/15 text-purple-300",
-      animateBack: true,
-      tiltStrength: 14,
-    },
-  },
-  {
-    id: 14,
-    name: "Hadjadj Kawther",
-    role: "Treasurer",
-    image: "kawther-front-image.png",
-    borderClass: "border-purple-500/50",
-    bgGradientClass: "from-purple-500/10 to-pink-500/5",
-    accentClass: "text-purple-400",
-    iconColor: "text-purple-400",
-    iconBgColor: "bg-purple-500/20",
-    iconBorderColor: "border-purple-500/50",
-    socialLinks: [
-      {
-        icon: Mail,
-        label: "Email",
-        href: "mailto:kawther.had47@gmail.com",
-      },
-    ],
-    backContent: (
-      <div className="text-center space-y-3 p-4">
-        <div className="w-16 h-16 mx-auto bg-purple-500/20 rounded-full flex items-center justify-center">
-          <Crown className="w-8 h-8 text-purple-400" />
-        </div>
-        <h3 className="text-xl font-bold text-purple-400">Hadjadj Kawther</h3>
-        <p className="text-sm text-base-content/80">Treasurer</p>
-        <p className="text-xs text-base-content/70">Master 1 GL</p>
-        <p className="text-xs">
-          <a href="mailto:kawther.had47@gmail.com">kawther.had47@gmail.com</a>
-        </p>
+          @keyframes crownFloatPurple {
+            0% { transform: translateY(0) scale(1) rotate(-2deg); }
+            50% { transform: translateY(-10px) scale(1.05) rotate(2deg); }
+            100% { transform: translateY(0) scale(1) rotate(-2deg); }
+          }
+          .animate-crown-purple { animation: crownFloatPurple 3s ease-in-out infinite; }
+          .stars-layer-purple {
+            background:
+              radial-gradient(circle at 8% 15%, rgba(217, 70, 239, 0.95) 1px, transparent 1.5px),
+              radial-gradient(circle at 25% 75%, rgba(236, 72, 153, 0.85) 1.2px, transparent 1.8px),
+              radial-gradient(circle at 45% 25%, rgba(192, 38, 211, 0.7) 0.8px, transparent 1.2px),
+              radial-gradient(circle at 70% 10%, rgba(217, 70, 239, 0.8) 1px, transparent 1.5px),
+              radial-gradient(circle at 88% 65%, rgba(236, 72, 153, 0.9) 1.1px, transparent 1.6px),
+              radial-gradient(circle at 15% 50%, rgba(192, 38, 211, 0.75) 0.9px, transparent 1.3px),
+              radial-gradient(circle at 92% 35%, rgba(217, 70, 239, 0.85) 1px, transparent 1.4px);
+            animation: starPulsePurple 5s ease-in-out infinite;
+          }
+          @keyframes starPulsePurple {
+            0% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+            100% { opacity: 0.8; transform: scale(1); }
+          }
+          .confetti-layer-purple::before,
+          .confetti-layer-purple::after { /* decorative confetti */ }
+          @media (prefers-reduced-motion: reduce) {
+            .animate-crown-purple, .stars-layer-purple { animation: none !important; }
+          }
+        `}</style>
       </div>
     ),
     theme: {
       background:
-        "linear-gradient(180deg, rgba(240,220,255,0.08), rgba(250,235,255,0.02))",
-      rimColor: "rgba(186,85,211,0.12)",
+        "linear-gradient(180deg, rgb(88, 28, 135), rgb(134, 25, 143))",
+      rimColor: "rgba(217, 70, 239, 0.8)",
       gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.9,
-      shadow: "0 20px 50px rgba(120,0,120,0.08)",
-      badge: "GI",
-      badgeClass: "bg-purple-500/15 text-purple-300",
+        "radial-gradient(closest-side, rgba(217, 70, 239, 0.15), transparent)",
+      glossOpacity: 1,
+      shadow: "0 40px 100px rgba(217, 70, 239, 0.4)",
+      badge: "LEADER",
+      badgeClass:
+        "bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white border-2 border-fuchsia-400 shadow-lg shadow-fuchsia-500/50",
       animateBack: true,
-      tiltStrength: 16,
-    },
-  },
-  {
-    id: 3,
-    name: "Hakim Ait Abderrahim",
-    role: "Developer",
-    image: "/Hakim.jpg",
-    borderClass: "border-blue-500/50",
-    bgGradientClass: "from-blue-500/10 to-cyan-500/5",
-    accentClass: "text-blue-400",
-    iconColor: "text-blue-400",
-    iconBgColor: "bg-blue-500/20",
-    iconBorderColor: "border-blue-500/50",
-    socialLinks: [
-      {
-        icon: Mail,
-        label: "Email",
-        href: "mailto:Hakimaitabderrahim18@gmail.com",
-      },
-      {
-        icon: Globe,
-        label: "Portfolio",
-        href: "https://66ee86e5f20b6d1656809790--preeminent-shortbread-6639a5.netlify.app/",
-      },
-    ],
-    backContent: (
-      <div className="text-center space-y-3 p-4">
-        <div className="w-16 h-16 mx-auto bg-blue-500/20 rounded-full flex items-center justify-center">
-          <Code className="w-8 h-8 text-blue-400" />
-        </div>
-        <h3 className="text-xl font-bold text-blue-400">
-          Hakim Ait Abderrahim
-        </h3>
-        <p className="text-sm text-base-content/80">Developer</p>
-        <p className="text-xs text-base-content/70">Master 2 GL</p>
-        <p className="text-xs">
-          <a href="mailto:Hakimaitabderrahim18@gmail.com">
-            Hakimaitabderrahim18@gmail.com
-          </a>
-        </p>
-      </div>
-    ),
-    theme: {
-      background:
-        "linear-gradient(180deg, rgba(220,240,255,0.08), rgba(235,250,255,0.02))",
-      rimColor: "rgba(100,149,237,0.12)",
-      gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.9,
-      shadow: "0 20px 50px rgba(0,60,120,0.08)",
-      badge: "GL",
-      badgeClass: "bg-blue-500/15 text-blue-300",
-      animateBack: true,
-      tiltStrength: 16,
+      tiltStrength: 18,
     },
   },
 
-  {
-    id: 4,
+  /* 10 */ {
+    id: 10,
     name: "OULD Hocine Sofiane",
-    role: "Student",
+    role: "CO - leader of the club",
     image: "/Sofiane.jpg",
     borderClass: "border-green-500/50",
     bgGradientClass: "from-green-500/10 to-emerald-500/5",
@@ -464,7 +603,7 @@ const teamMembers = [
         <h3 className="text-xl font-bold text-green-400">
           OULD Hocine Sofiane
         </h3>
-        <p className="text-sm text-base-content/80">Student</p>
+        <p className="text-sm text-base-content/80">CO - leader of the club</p>
         <p className="text-xs text-base-content/70">Master 1 AI</p>
         <p className="text-xs">
           <a href="mailto:sofiane2017old@gmail.com">sofiane2017old@gmail.com</a>
@@ -479,18 +618,108 @@ const teamMembers = [
         "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
       glossOpacity: 0.9,
       shadow: "0 18px 44px rgba(20,80,40,0.06)",
-      badge: "AI",
+      badge: "CO",
       badgeClass: "bg-green-500/15 text-green-300",
       animateBack: true,
       tiltStrength: 14,
     },
   },
 
-  {
-    id: 5,
-    name: "Matela Abdelhafid",
-    role: "Student",
-    image: "/matela-image-front.png",
+  /* 11 */ {
+    id: 11,
+    name: "Aziz Ben",
+    role: "Network Lead",
+    image: "aziz-image-front.jpg",
+    borderClass: "border-sky-500/50",
+    bgGradientClass: "from-sky-500/10 to-blue-500/5",
+    accentClass: "text-sky-400",
+    iconColor: "text-sky-400",
+    iconBgColor: "bg-sky-500/20",
+    iconBorderColor: "border-sky-500/50",
+    socialLinks: [
+      {
+        icon: Globe,
+        label: "Portfolio",
+        href: "https://abdelazizbenallou.github.io/Personel_Profilio/",
+      },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-sky-500/20 rounded-full flex items-center justify-center">
+          <Globe className="w-8 h-8 text-sky-400" />
+        </div>
+        <h3 className="text-xl font-bold text-sky-400">Aziz Ben</h3>
+        <p className="text-sm text-base-content/80">Network Lead</p>
+        <p className="text-xs text-base-content/70">Master Networks 1</p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(220,245,255,0.10), rgba(230,250,255,0.02))",
+      rimColor: "rgba(56,189,248,0.12)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 20px 50px rgba(20,100,150,0.08)",
+      badge: "NET",
+      badgeClass: "bg-sky-500/15 text-sky-300",
+      animateBack: true,
+      tiltStrength: 14,
+    },
+  },
+
+  /* 12 */ {
+    id: 12,
+    name: "Tounssi Abdessamed",
+    role: "Lead AI",
+    image: "/Tounssi.jpg",
+    borderClass: "border-amber-500/50",
+    bgGradientClass: "from-amber-500/10 to-yellow-500/5",
+    accentClass: "text-amber-400",
+    iconColor: "text-amber-400",
+    iconBgColor: "bg-amber-500/20",
+    iconBorderColor: "border-amber-500/50",
+    socialLinks: [
+      { icon: Mail, label: "Email", href: "mailto:mcboosabdo@gmail.com" },
+      {
+        icon: Github,
+        label: "GitHub",
+        href: "https://port-folio-hvbi.vercel.app/",
+      },
+    ],
+    backContent: (
+      <div className="text-center space-y-3 p-4">
+        <div className="w-16 h-16 mx-auto bg-amber-500/20 rounded-full flex items-center justify-center">
+          <Star className="w-8 h-8 text-amber-400" />
+        </div>
+        <h3 className="text-xl font-bold text-amber-400">Tounssi Abdessamed</h3>
+        <p className="text-sm text-base-content/80">Lead AI</p>
+        <p className="text-xs text-base-content/70">M1 IA</p>
+        <p className="text-xs">
+          <a href="mailto:mcboosabdo@gmail.com">mcboosabdo@gmail.com</a>
+        </p>
+      </div>
+    ),
+    theme: {
+      background:
+        "linear-gradient(180deg, rgba(255,245,220,0.10), rgba(255,250,235,0.02))",
+      rimColor: "rgba(250,204,21,0.10)",
+      gloss:
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.85,
+      shadow: "0 18px 40px rgba(180,120,20,0.06)",
+      badge: "AI",
+      badgeClass: "bg-amber-500/15 text-amber-300",
+      animateBack: false,
+      tiltStrength: 12,
+    },
+  },
+
+  /* 13 */ {
+    id: 13,
+    name: "Benzarfa Rania Manel",
+    role: "HR",
+    image: "rania-image-front.png",
     borderClass: "border-rose-500/50",
     bgGradientClass: "from-rose-500/10 to-pink-500/5",
     accentClass: "text-rose-400",
@@ -498,303 +727,90 @@ const teamMembers = [
     iconBgColor: "bg-rose-500/20",
     iconBorderColor: "border-rose-500/50",
     socialLinks: [
-      { icon: Mail, label: "Email", href: "mailto:abdou26072001@gmail.com" },
-      { icon: Github, label: "GitHub", href: "https://github.com/hafid2001" },
+      {
+        icon: Mail,
+        label: "Email",
+      },
     ],
     backContent: (
       <div className="text-center space-y-3 p-4">
         <div className="w-16 h-16 mx-auto bg-rose-500/20 rounded-full flex items-center justify-center">
-          <Heart className="w-8 h-8 text-rose-400" />
+          <Brain className="w-8 h-8 text-rose-400" />
         </div>
-        <h3 className="text-xl font-bold text-rose-400">MATELA Abdelhafid</h3>
-        <p className="text-sm text-base-content/80">Student</p>
-        <p className="text-xs text-base-content/70">3 LS SI</p>
-        <p className="text-xs">
-          <a href="mailto:abdou26072001@gmail.com">abdou26072001@gmail.com</a>
-        </p>
+        <h3 className="text-xl font-bold text-rose-400">
+          Benzarfa Rania Manel
+        </h3>
+        <p className="text-sm text-base-content/80">AI Specialist</p>
+        <p className="text-xs text-base-content/70">Master 1 AID</p>
       </div>
     ),
     theme: {
       background:
-        "linear-gradient(180deg, rgba(255,230,235,0.10), rgba(255,245,247,0.02))",
-      rimColor: "rgba(249, 168, 212, 0.12)",
+        "linear-gradient(180deg, rgba(255,220,240,0.08), rgba(255,235,250,0.02))",
+      rimColor: "rgba(244,63,94,0.12)",
       gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.09), transparent)",
-      glossOpacity: 0.95,
-      shadow: "0 18px 40px rgba(0,0,0,0.12)",
-      badge: "SI",
-      badgeClass: "bg-rose-500/20 text-rose-300",
+        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
+      glossOpacity: 0.9,
+      shadow: "0 20px 50px rgba(120,0,60,0.08)",
+      badge: "AID",
+      badgeClass: "bg-rose-500/15 text-rose-300",
       animateBack: true,
-      tiltStrength: 14,
+      tiltStrength: 16,
     },
   },
-  {
-    id: 9,
-    name: "Sabrine Boughrab",
-    role: "Club Owner & Leader",
-    image: "/sabrin-image-front.png",
-    // Strong purple/fuchsia border - NO TRANSPARENCY
-    borderClass:
-      "border-4 border-fuchsia-500 shadow-[0_0_30px_rgba(217,70,239,0.6)]",
-    // Solid purple gradient - NO TRANSPARENCY
-    bgGradientClass: "from-purple-900 via-fuchsia-900 to-purple-900",
-    accentClass: "text-fuchsia-400",
-    // Purple theme colors
-    iconColor: "text-fuchsia-300",
-    iconBgColor: "bg-fuchsia-600",
-    iconBorderColor: "border-fuchsia-400",
+
+  /* 14 */ {
+    id: 14,
+    name: "Amine Beridja",
+    role: "Lead Gamedev",
+    image: "/Amine.jpg",
+    borderClass: "border-amber-500/50",
+    bgGradientClass: "from-amber-500/10 to-yellow-500/5",
+    accentClass: "text-amber-400",
+    iconColor: "text-amber-400",
+    iconBgColor: "bg-amber-500/20",
+    iconBorderColor: "border-amber-500/50",
     socialLinks: [
       {
         icon: Mail,
         label: "Email",
-        href: "mailto:sabrineboughrab@gmail.com",
-        platform: "email",
-      },
-    ],
-    backContent: (
-      <div className="relative w-full h-full flex items-center justify-center p-6 text-center">
-        {/* FOREGROUND */}
-        <div className="z-10 flex flex-col items-center gap-2">
-          {/* Elite Shield Badge with crown */}
-          <div className="mx-auto mb-2 w-32 h-32 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-800 to-fuchsia-800 border-4 border-fuchsia-400 shadow-2xl shadow-fuchsia-500/70 relative">
-            <Crown className="w-16 h-16 text-yellow-300 animate-crown-purple drop-shadow-[0_0_15px_rgba(253,224,71,0.8)]" />
-
-            {/* Small stars around crown */}
-            <Star
-              className="absolute top-2 right-2 w-4 h-4 text-yellow-300 animate-pulse"
-              style={{ animationDelay: "0.5s" }}
-            />
-            <Star
-              className="absolute bottom-2 left-2 w-3 h-3 text-fuchsia-300 animate-pulse"
-              style={{ animationDelay: "1s" }}
-            />
-          </div>
-
-          {/* Name with strong purple glow */}
-          <h3 className="text-2xl sm:text-3xl font-black text-fuchsia-200 drop-shadow-[0_0_20px_rgba(217,70,239,1)] font-mono tracking-wider">
-            Sabrine Boughrab
-          </h3>
-
-          {/* Role badges */}
-          <div className="flex items-center gap-2 flex-wrap justify-center">
-            <div className="bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white px-3 py-1 rounded-full text-xs font-bold border border-fuchsia-400 shadow-lg flex items-center gap-1">
-              <Shield className="w-3 h-3" />
-              Club Owner
-            </div>
-            <div className="bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white px-3 py-1 rounded-full text-xs font-bold border border-purple-400 shadow-lg">
-              1 Master RT
-            </div>
-          </div>
-
-          {/* Elite status indicators */}
-          <div className="flex gap-2 mt-2">
-            <div className="px-2 py-1 bg-fuchsia-500/20 border border-fuchsia-400/50 rounded text-xs font-mono text-fuchsia-300">
-              STATUS: ELITE
-            </div>
-            <div className="px-2 py-1 bg-purple-500/20 border border-purple-400/50 rounded text-xs font-mono text-purple-300">
-              RANK: LEADER
-            </div>
-          </div>
-        </div>
-
-        {/* Inline CSS for purple theme animations */}
-        <style>{`
-        /* Crown float animation - purple version */
-        @keyframes crownFloatPurple {
-          0% { transform: translateY(0) scale(1) rotate(-2deg); }
-          50% { transform: translateY(-10px) scale(1.05) rotate(2deg); }
-          100% { transform: translateY(0) scale(1) rotate(-2deg); }
-        }
-        .animate-crown-purple { 
-          animation: crownFloatPurple 3s ease-in-out infinite;
-        }
-        
-        /* Purple stars (full-cover) */
-        .stars-layer-purple {
-          background:
-            radial-gradient(circle at 8% 15%, rgba(217, 70, 239, 0.95) 1px, transparent 1.5px),
-            radial-gradient(circle at 25% 75%, rgba(236, 72, 153, 0.85) 1.2px, transparent 1.8px),
-            radial-gradient(circle at 45% 25%, rgba(192, 38, 211, 0.7) 0.8px, transparent 1.2px),
-            radial-gradient(circle at 70% 10%, rgba(217, 70, 239, 0.8) 1px, transparent 1.5px),
-            radial-gradient(circle at 88% 65%, rgba(236, 72, 153, 0.9) 1.1px, transparent 1.6px),
-            radial-gradient(circle at 15% 50%, rgba(192, 38, 211, 0.75) 0.9px, transparent 1.3px),
-            radial-gradient(circle at 92% 35%, rgba(217, 70, 239, 0.85) 1px, transparent 1.4px);
-          animation: starPulsePurple 5s ease-in-out infinite;
-        }
-        
-        @keyframes starPulsePurple {
-          0% { opacity: 0.8; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.02); }
-          100% { opacity: 0.8; transform: scale(1); }
-        }
-        
-        /* Purple confetti: floating diamonds */
-        .confetti-layer-purple::before,
-        .confetti-layer-purple::after {
-          content: "";
-          position: absolute;
-          width: 10px;
-          height: 10px;
-          transform: rotate(45deg);
-          background: radial-gradient(circle at 30% 30%, rgba(217, 70, 239, 0.9), rgba(192, 38, 211, 0.4));
-          left: 15%;
-          top: 25%;
-          opacity: 0.9;
-          border-radius: 2px;
-          box-shadow:
-            50px 40px 0 rgba(236, 72, 153, 0.3),
-            150px 70px 0 rgba(217, 70, 239, 0.25),
-            240px 40px 0 rgba(192, 38, 211, 0.2),
-            100px 120px 0 rgba(236, 72, 153, 0.25);
-          animation: confettiFloatPurple 10s linear infinite;
-        }
-        
-        .confetti-layer-purple::after {
-          left: 75%;
-          top: 70%;
-          transform: rotate(45deg) scale(1.1);
-          animation-delay: 3s;
-          background: radial-gradient(circle at 30% 30%, rgba(236, 72, 153, 0.9), rgba(217, 70, 239, 0.4));
-        }
-        
-        @keyframes confettiFloatPurple {
-          0% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
-          50% { transform: translateY(-25px) rotate(45deg); opacity: 0.5; }
-          100% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
-        }
-        
-        /* Respect reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-          .animate-crown-purple, 
-          .stars-layer-purple, 
-          .confetti-layer-purple::before, 
-          .confetti-layer-purple::after {
-            animation: none !important;
-          }
-        }
-      `}</style>
-      </div>
-    ),
-    theme: {
-      // SOLID purple background - NO TRANSPARENCY
-      background:
-        "linear-gradient(180deg, rgb(88, 28, 135), rgb(134, 25, 143))",
-      rimColor: "rgba(217, 70, 239, 0.8)",
-      gloss:
-        "radial-gradient(closest-side, rgba(217, 70, 239, 0.15), transparent)",
-      glossOpacity: 1,
-      shadow: "0 40px 100px rgba(217, 70, 239, 0.4)",
-      badge: "LEADER",
-      badgeClass:
-        "bg-gradient-to-r from-fuchsia-600 to-pink-600 text-white border-2 border-fuchsia-400 shadow-lg shadow-fuchsia-500/50",
-      animateBack: true,
-      tiltStrength: 18,
-    },
-  },
-
-  {
-    id: 6,
-    name: "mlsvmdl",
-    role: " Developer",
-    image: "/mlsvmdl-image-front.jpg",
-    borderClass: "border-red-700/60",
-    bgGradientClass: "from-red-900 to-black",
-    accentClass: "text-white",
-    iconColor: "text-red-300",
-    iconBgColor: "bg-red-800/30",
-    iconBorderColor: "border-red-700/60",
-    socialLinks: [
-      { icon: Github, label: "GitHub", href: "https://github.com/mlsvmdl" },
-    ],
-    backContent: (
-      <div className="text-center space-y-4 w-full text-white">
-        <div className="w-32 h-32 mx-auto rounded-2xl overflow-visible group py-3">
-          <img
-            src="/mlsvmdl-image-back.png"
-            className="w-full h-full object-contain group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
-            style={{ animation: "float 3s ease-in-out infinite" }}
-          />
-        </div>
-        <h3 className="text-xl font-bold text-white">mlsvmdl</h3>
-        <p className="text-sm text-white/80">Developer</p>
-        <div className="text-xs text-white space-y-1">
-          <p>☀️ Chitch loves Poppo!</p>
-        </div>
-        <style>{`
-          @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-          }
-        `}</style>
-      </div>
-    ),
-    theme: {
-      background:
-        "linear-gradient(180deg, rgba(6,6,6,1) 0%, rgba(36,6,6,0.98) 35%, rgba(80,0,0,0.85) 70%, rgba(0,0,0,1) 100%)",
-      rimColor: "rgba(255,36,36,0.18)",
-      gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.04), rgba(255,0,0,0.03) 40%, transparent 60%)",
-      glossOpacity: 0.95,
-      shadow: "0 30px 80px rgba(0,0,0,0.65)",
-      badge: "BERSERK",
-      badgeClass: "bg-red-800/30 text-red-300",
-      animateBack: true,
-      tiltStrength: 18,
-      customStyles: { backgroundBlendMode: "multiply" },
-    },
-  },
-
-  {
-    id: 7,
-    name: "Missoum Hadi Adda",
-    role: "Student",
-    image: "/Adda.jpg",
-    borderClass: "border-indigo-500/50",
-    bgGradientClass: "from-indigo-500/10 to-blue-500/5",
-    accentClass: "text-indigo-400",
-    iconColor: "text-indigo-400",
-    iconBgColor: "bg-indigo-500/20",
-    iconBorderColor: "border-indigo-500/50",
-    socialLinks: [
-      { icon: Mail, label: "Email", href: "mailto:addajs48@gmail.com" },
-      {
-        icon: Globe,
-        label: "Portfolio",
-        href: "https://addahadi.github.io/Portofolio/",
+        href: "mailto:aminemohamed0142@gmail.com",
       },
     ],
     backContent: (
       <div className="text-center space-y-3 p-4">
-        <div className="w-16 h-16 mx-auto bg-indigo-500/20 rounded-full flex items-center justify-center">
-          <Cpu className="w-8 h-8 text-indigo-400" />
+        <div className="w-16 h-16 mx-auto bg-amber-500/20 rounded-full flex items-center justify-center">
+          <Star className="w-8 h-8 text-amber-400" />
         </div>
-        <h3 className="text-xl font-bold text-indigo-400">Missoum Hadi Adda</h3>
-        <p className="text-sm text-base-content/80">Student</p>
-        <p className="text-xs text-base-content/70">3 LS SI</p>
+        <h3 className="text-xl font-bold text-amber-400">Amine Beridja</h3>
+        <p className="text-sm text-base-content/80">Lead Gamedev</p>
+        <p className="text-xs text-base-content/70">L3</p>
         <p className="text-xs">
-          <a href="mailto:addajs48@gmail.com">addajs48@gmail.com</a>
+          <a href="mailto:aminemohamed0142@gmail.com">
+            aminemohamed0142@gmail.com
+          </a>
         </p>
       </div>
     ),
     theme: {
       background:
-        "linear-gradient(180deg, rgba(230,235,255,0.10), rgba(245,250,255,0.02))",
-      rimColor: "rgba(99,102,241,0.12)",
+        "linear-gradient(180deg, rgba(255,245,220,0.10), rgba(255,250,235,0.02))",
+      rimColor: "rgba(250,204,21,0.10)",
       gloss:
         "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.9,
-      shadow: "0 22px 60px rgba(30,30,120,0.06)",
-      badge: "SI",
-      badgeClass: "bg-indigo-500/15 text-indigo-300",
-      animateBack: true,
-      tiltStrength: 15,
+      glossOpacity: 0.85,
+      shadow: "0 18px 40px rgba(180,120,20,0.06)",
+      badge: "GAME",
+      badgeClass: "bg-amber-500/15 text-amber-300",
+      animateBack: false,
+      tiltStrength: 12,
     },
   },
 
-  {
-    id: 8,
+  /* 15 */ {
+    id: 15,
     name: "Bousbia Mouhhamed Bachir",
-    role: "Student / Developer",
+    role: "Lead Blockchain",
     image: "/Bachir.jpg",
     borderClass: "border-cyan-500/50",
     bgGradientClass: "from-cyan-500/10 to-teal-500/5",
@@ -822,7 +838,7 @@ const teamMembers = [
         <h3 className="text-xl font-bold text-cyan-400">
           Bousbia Mouhhamed Bachir
         </h3>
-        <p className="text-sm text-base-content/80">Student / Developer</p>
+        <p className="text-sm text-base-content/80">Lead Blockchain</p>
         <p className="text-xs">
           <a href="mailto:bousbiamouhamedbachir@gmail.com">
             bousbiamouhamedbachir@gmail.com
@@ -838,147 +854,102 @@ const teamMembers = [
         "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
       glossOpacity: 0.9,
       shadow: "0 18px 40px rgba(20,120,130,0.06)",
-      badge: "DEV",
+      badge: "BLOCK",
       badgeClass: "bg-cyan-500/15 text-cyan-300",
       animateBack: true,
       tiltStrength: 13,
     },
   },
 
-  {
-    id: 10,
-    name: "Bedoui Denia",
-    role: "Designer + HR",
-    image: "/denia-image-front.png",
-    borderClass: "border-amber-500/50",
-    bgGradientClass: "from-amber-500/10 to-yellow-500/5",
-    accentClass: "text-amber-400",
-    iconColor: "text-amber-400",
-    iconBgColor: "bg-amber-500/20",
-    iconBorderColor: "border-amber-500/50",
+  /* 16 */ {
+    id: 16,
+    name: "Matela Abdelhafid",
+    role: "Lead HR (Human Resources)",
+    image: "/matela-image-front.png",
+    borderClass: "border-rose-500/50",
+    bgGradientClass: "from-rose-500/10 to-pink-500/5",
+    accentClass: "text-rose-400",
+    iconColor: "text-rose-400",
+    iconBgColor: "bg-rose-500/20",
+    iconBorderColor: "border-rose-500/50",
     socialLinks: [
-      { icon: Mail, label: "Email", href: "mailto:bedouidenia25@gmail.com" },
+      { icon: Mail, label: "Email", href: "mailto:abdou26072001@gmail.com" },
+      { icon: Github, label: "GitHub", href: "https://github.com/hafid2001" },
     ],
     backContent: (
       <div className="text-center space-y-3 p-4">
-        <div className="w-16 h-16 mx-auto bg-amber-500/20 rounded-full flex items-center justify-center">
-          <Star className="w-8 h-8 text-amber-400" />
+        <div className="w-16 h-16 mx-auto bg-rose-500/20 rounded-full flex items-center justify-center">
+          <Heart className="w-8 h-8 text-rose-400" />
         </div>
-        <h3 className="text-xl font-bold text-amber-400">Bedoui Denia</h3>
-        <p className="text-sm text-base-content/80">Designer + HR</p>
-        <p className="text-xs text-base-content/70">L3</p>
+        <h3 className="text-xl font-bold text-rose-400">MATELA Abdelhafid</h3>
+        <p className="text-sm text-base-content/80">
+          Lead HR (Human Resources)
+        </p>
+        <p className="text-xs text-base-content/70">3 LS SI</p>
         <p className="text-xs">
-          <a href="mailto:bedouidenia25@gmail.com">bedouidenia25@gmail.com</a>
+          <a href="mailto:abdou26072001@gmail.com">abdou26072001@gmail.com</a>
         </p>
       </div>
     ),
     theme: {
       background:
-        "linear-gradient(180deg, rgba(255,245,220,0.10), rgba(255,250,235,0.02))",
-      rimColor: "rgba(250,204,21,0.10)",
+        "linear-gradient(180deg, rgba(255,230,235,0.10), rgba(255,245,247,0.02))",
+      rimColor: "rgba(249, 168, 212, 0.12)",
       gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.85,
-      shadow: "0 18px 40px rgba(180,120,20,0.06)",
-      badge: "DES/HR",
-      badgeClass: "bg-amber-500/15 text-amber-300",
-      animateBack: false,
-      tiltStrength: 12,
+        "radial-gradient(closest-side, rgba(255,255,255,0.09), transparent)",
+      glossOpacity: 0.95,
+      shadow: "0 18px 40px rgba(0,0,0,0.12)",
+      badge: "HR",
+      badgeClass: "bg-rose-500/20 text-rose-300",
+      animateBack: true,
+      tiltStrength: 14,
     },
   },
-  {
-    id: 11,
-    name: "Amine Beridja",
-    role: "Student + Developer",
-    image: "/Amine.jpg",
-    borderClass: "border-amber-500/50",
-    bgGradientClass: "from-amber-500/10 to-yellow-500/5",
-    accentClass: "text-amber-400",
-    iconColor: "text-amber-400",
-    iconBgColor: "bg-amber-500/20",
-    iconBorderColor: "border-amber-500/50",
+
+  /* 17 */ {
+    id: 17,
+    name: "Samira Mostefaoui",
+    role: "Photographer / Media Team",
+    image: "samira-image-front.png",
+    borderClass: "border-fuchsia-500/50",
+    bgGradientClass: "from-fuchsia-500/10 to-pink-500/5",
+    accentClass: "text-fuchsia-400",
+    iconColor: "text-fuchsia-400",
+    iconBgColor: "bg-fuchsia-500/20",
+    iconBorderColor: "border-fuchsia-500/50",
     socialLinks: [
       {
-        icon: Mail,
-        label: "Email",
-        href: "Email : aminemohamed0142@gmail.com",
+        icon: Linkedin,
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/samira-mostefaoui-a3bb8b387?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       },
     ],
     backContent: (
       <div className="text-center space-y-3 p-4">
-        <div className="w-16 h-16 mx-auto bg-amber-500/20 rounded-full flex items-center justify-center">
-          <Star className="w-8 h-8 text-amber-400" />
+        <div className="w-16 h-16 mx-auto bg-fuchsia-500/20 rounded-full flex items-center justify-center">
+          <Video className="w-8 h-8 text-fuchsia-400" />
         </div>
-        <h3 className="text-xl font-bold text-amber-400">Amine Beridja</h3>
-        <p className="text-sm text-base-content/80">Student + Developer</p>
-        <p className="text-xs text-base-content/70">L3</p>
-        <p className="text-xs">
-          <a href="Email : aminemohamed0142@gmail.com ">
-            Email : aminemohamed0142@gmail.com
-          </a>
+        <h3 className="text-xl font-bold text-fuchsia-400">
+          Samira Mostefaoui
+        </h3>
+        <p className="text-sm text-base-content/80">
+          Photographer / Media Team
         </p>
+        <p className="text-xs text-base-content/70">Media & Events</p>
       </div>
     ),
     theme: {
       background:
-        "linear-gradient(180deg, rgba(255,245,220,0.10), rgba(255,250,235,0.02))",
-      rimColor: "rgba(250,204,21,0.10)",
+        "linear-gradient(180deg, rgba(255,240,245,0.08), rgba(255,235,245,0.02))",
+      rimColor: "rgba(236,72,153,0.12)",
       gloss:
         "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.85,
-      shadow: "0 18px 40px rgba(180,120,20,0.06)",
-      badge: "DES/HR",
-      badgeClass: "bg-amber-500/15 text-amber-300",
-      animateBack: false,
-      tiltStrength: 12,
-    },
-  },
-  {
-    id: 12,
-    name: "Tounssi Abdessamed",
-    role: "Student ",
-    image: "/Tounssi.jpg",
-    borderClass: "border-amber-500/50",
-    bgGradientClass: "from-amber-500/10 to-yellow-500/5",
-    accentClass: "text-amber-400",
-    iconColor: "text-amber-400",
-    iconBgColor: "bg-amber-500/20",
-    iconBorderColor: "border-amber-500/50",
-    socialLinks: [
-      { icon: Mail, label: "Email", href: "mcboosabdo@gmail.com" },
-      {
-        icon: Github,
-        label: "GitHub",
-        href: "https://port-folio-hvbi.vercel.app/",
-      },
-    ],
-    backContent: (
-      <div className="text-center space-y-3 p-4">
-        <div className="w-16 h-16 mx-auto bg-amber-500/20 rounded-full flex items-center justify-center">
-          <Star className="w-8 h-8 text-amber-400" />
-        </div>
-        <h3 className="text-xl font-bold text-amber-400">Tounssi Abdessamed</h3>
-        <p className="text-sm text-base-content/80">Student</p>
-        <p className="text-xs text-base-content/70">M1 IA</p>
-        <p className="text-xs">
-          <a href="mailto:bedouidenia25@gmail.com">
-            Email:mcboosabdo@gmail.com
-          </a>
-        </p>
-      </div>
-    ),
-    theme: {
-      background:
-        "linear-gradient(180deg, rgba(255,245,220,0.10), rgba(255,250,235,0.02))",
-      rimColor: "rgba(250,204,21,0.10)",
-      gloss:
-        "radial-gradient(closest-side, rgba(255,255,255,0.06), transparent)",
-      glossOpacity: 0.85,
-      shadow: "0 18px 40px rgba(180,120,20,0.06)",
-      badge: "DES/HR",
-      badgeClass: "bg-amber-500/15 text-amber-300",
-      animateBack: false,
-      tiltStrength: 12,
+      glossOpacity: 0.9,
+      shadow: "0 18px 40px rgba(200,60,120,0.06)",
+      badge: "MEDIA",
+      badgeClass: "bg-fuchsia-500/15 text-fuchsia-300",
+      animateBack: true,
+      tiltStrength: 14,
     },
   },
 ];

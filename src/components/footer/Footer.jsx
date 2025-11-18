@@ -23,7 +23,7 @@ const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-    
+
   const socialLinks = [
     {
       name: "Telegram",

@@ -1,11 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Terminal, Zap, Calendar } from "lucide-react";
-import CountdownToNov18 from "./CountdownToNov18";
+import { Terminal, Zap } from "lucide-react";
 import useGlitchAnimation from "../../hooks/useGlitchAnimation";
-import { useFadeSlideUp, useScaleFade } from "../../hooks/useGsapAnimation";
-import { TerminalBadge, CornerBrackets, DataLine } from "../ui/CyberBackground";
+import { useFadeSlideUp } from "../../hooks/useGsapAnimation";
+import { TerminalBadge } from "../ui/CyberBackground";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,8 +15,6 @@ const HeroSection = ({ theme }) => {
   const robotRefMobileRight = useRef(null);
   const robotRefDesktop = useRef(null);
 
-  // Reusable animation hooks
-  const countdownCardRef = useScaleFade({ delay: 0.2, duration: 0.8 });
   const titleRef = useFadeSlideUp({ delay: 0.5, duration: 0.8 });
   const subtitleRef = useFadeSlideUp({ delay: 0.7, duration: 0.8 });
   const descriptionRef = useFadeSlideUp({ delay: 0.9, duration: 0.8, y: 20 });
@@ -162,53 +159,7 @@ const HeroSection = ({ theme }) => {
             alt="CyberNexus Robot"
           />
         </div>
-
-        <div ref={countdownCardRef} className="relative group">
-          {/* Corner Brackets */}
-          <CornerBrackets size="md" />
-
-          {/* Simplified glow - only on hover */}
-          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-
-          {/* Main border */}
-          <div className="absolute inset-0 rounded-3xl border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-300" />
-
-          {/* Card Content - Removed backdrop-blur and reduced opacity layers */}
-          <div className="relative bg-base-200/95 p-8 md:p-12 rounded-3xl border-2 border-base-content/10 shadow-2xl">
-            {/* Data Lines */}
-            <DataLine position="top" intensity="medium" />
-            <DataLine position="bottom" intensity="medium" />
-
-            {/* Content */}
-            <div className="relative z-10">
-              <div className="mb-6">
-                <div className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full text-sm font-bold uppercase tracking-wider mb-4 shadow-lg border-2 border-primary/50 relative overflow-hidden group/badge">
-                  <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300" />
-                  <Calendar className="w-4 h-4 relative z-10" />
-                  <span className="relative z-10 font-mono">
-                    WELCOME_DAY_2025
-                  </span>
-                  <Zap className="w-4 h-4 relative z-10" />
-                </div>
-
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-primary mb-3 font-mono tracking-tight">
-                  Join Us on November 18th!
-                </h3>
-
-                <p className="text-base sm:text-lg text-base-content/85 max-w-2xl mx-auto font-mono leading-relaxed">
-                  <span className="text-primary font-bold">&gt;</span> Meet the
-                  team, explore what we do, and kick off your journey with
-                  CyberNexus. It's going to be epic! 🚀
-                </p>
-              </div>
-
-              {/* Countdown Component */}
-              <CountdownToNov18 />
-            </div>
-          </div>
-        </div>
       </div>
-
       {/* Title with GSAP Glitch Effect - NOW SECOND */}
       <div className="mb-6 relative z-10">
         <div className="mb-4">
@@ -252,6 +203,19 @@ const HeroSection = ({ theme }) => {
           <span className="text-secondary">&gt;_</span> Whether you're just
           starting out or already a tech wizard, there's a place for you here!
         </p>
+
+        <div className="relative z-10 mt-4">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfTswK69iamz_XcmYAz8jTTm8ZAZSMS4RL9-WMBiZaXh9UR-w/viewform?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-primary-content font-bold text-lg rounded-lg hover:scale-105 hover:shadow-[0_0_30px_rgba(var(--p),0.5)] transition-all duration-300 group"
+          >
+            <Zap className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+            <span className="font-mono">JOIN CYBERNEXUS</span>
+            <span className="font-mono text-sm opacity-80">&gt;_</span>
+          </a>
+        </div>
       </div>
 
       {/* Desktop Robot - Removed drop-shadow filters */}
