@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import ToggleTheme from "../ui/ThemeToggle";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import Logo from "../ui/Logo";
+import ThemeToggle from "../ui/ThemeToggle";
 import {
   Menu,
   X,
@@ -10,37 +10,54 @@ import {
   Heart,
   Mail,
   Users,
+  LucideIcon,
 } from "lucide-react";
 
+interface NavItem {
+  name: string;
+  icon: LucideIcon;
+}
+
+interface Section {
+  id: string;
+  element: HTMLElement | null;
+}
+
+interface NavbarProps {
+  theme: string;
+  setTheme: Dispatch<SetStateAction<string>>;
+  handleScrollComponent?: (item: string) => void;
+}
+
+// Component
 const Navbar = ({
   theme,
   setTheme,
-  handleScrollComponent = (item) => console.log(item),
-}) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [activeSection, setActiveSection] = useState("Hero");
+  handleScrollComponent = (item: string) => console.log(item),
+}: NavbarProps) => {
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [lastScrollY, setLastScrollY] = useState<number>(0);
+  const [activeSection, setActiveSection] = useState<string>("Hero");
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { name: "Hero", icon: Home },
-    { name: "Blog", icon: BookOpen },
-    { name: "Team Members", icon: Users },
-    { name: "Projects", icon: FolderGit2 },
+    { name: "The Team", icon: Users },
+    { name: "What We Do", icon: BookOpen },
     { name: "Sponsors", icon: Heart },
     { name: "Contact", icon: Mail },
   ];
 
   // Improved spy scrolling
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       const currentScrollY = window.scrollY;
       const windowHeight = window.innerHeight;
 
       // Hide/show header based on scroll direction
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
-        setMenuOpen(false); // Close menu when hiding
+        setMenuOpen(false);
       } else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
@@ -53,7 +70,7 @@ const Navbar = ({
       setLastScrollY(currentScrollY);
 
       // Better spy scrolling logic
-      const sections = navItems.map((item) => ({
+      const sections: Section[] = navItems.map((item) => ({
         id: item.name,
         element: document.getElementById(item.name),
       }));
@@ -80,12 +97,11 @@ const Navbar = ({
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, navItems]);
 
-  const handleNavClick = (itemName) => {
+  const handleNavClick = (itemName: string): void => {
     handleScrollComponent(itemName);
     setMenuOpen(false);
-    // Don't set active section manually - let scroll spy handle it
   };
 
   // Prevent body scroll when menu is open
@@ -102,7 +118,7 @@ const Navbar = ({
 
   // Close menu on Escape key
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: KeyboardEvent): void => {
       if (e.key === "Escape" && menuOpen) {
         setMenuOpen(false);
       }
@@ -167,13 +183,13 @@ const Navbar = ({
               })}
 
               <div className="ml-2 pl-2 border-l border-primary/20">
-                <ToggleTheme theme={theme} setTheme={setTheme} />
+                <ThemeToggle theme={theme} setTheme={setTheme} />
               </div>
             </div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center gap-3">
-              <ToggleTheme theme={theme} setTheme={setTheme} />
+              <ThemeToggle theme={theme} setTheme={setTheme} />
               <button
                 className="relative text-base-content hover:text-primary transition-all duration-300 p-2 hover:bg-primary/10 rounded-lg"
                 onClick={() => setMenuOpen(!menuOpen)}

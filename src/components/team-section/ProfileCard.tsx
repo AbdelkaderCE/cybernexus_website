@@ -1,70 +1,84 @@
-import { useRef, useState } from "react";
-import { Github, Linkedin, Twitter, Mail, Briefcase } from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
+import { SocialLink } from "@/data/team";
 import gsap from "gsap";
 
-export default function ProfileCard({
+// Type definitions
+
+interface ProfileCardProps {
+  name: string;
+  role: string;
+  image: string;
+  socialLinks?: SocialLink[];
+  backContent?: React.ReactNode;
+  borderClass?: string;
+  bgGradientClass?: string;
+  accentClass?: string;
+  roleColor?: string;
+  flipAngle?: number;
+  maxTiltY?: number;
+  flipDuration?: number;
+  resetTiltDuration?: number;
+  className?: string;
+}
+
+const ProfileCard: React.FC<ProfileCardProps> = ({
   name,
   role,
   image,
-  socialLinks = null,
+  socialLinks = [],
   backContent = null,
   borderClass = "border-base-200",
   bgGradientClass = "from-white/5 to-base-300",
   accentClass = "text-base-content",
   roleColor = "text-white/70",
   flipAngle = 180,
-}) {
-  const cardRef = useRef(null);
+  maxTiltY = 15,
+  flipDuration = 0.6,
+  resetTiltDuration = 0.4,
+  className = "",
+}) => {
+  // Refs for animation
+  const cardRef = useRef<HTMLDivElement>(null);
   const rotationRef = useRef({ y: 0 });
   const baseRotationRef = useRef(0);
-  const currentTweenRef = useRef(null);
+  const currentTweenRef = useRef<gsap.core.Tween | null>(null);
   const isFlipping = useRef(false);
 
+  // State
   const [flipped, setFlipped] = useState(false);
 
-  const defaultSocialLinks = [
-    { icon: Github, label: "GitHub", href: "#", platform: "github" },
-    { icon: Linkedin, label: "LinkedIn", href: "#", platform: "linkedin" },
-    { icon: Twitter, label: "Twitter", href: "#", platform: "twitter" },
-    { icon: Briefcase, label: "Portfolio", href: "#", platform: "portfolio" },
-    { icon: Mail, label: "Email", href: "#", platform: "email" },
-  ];
-
-  const links = (socialLinks || defaultSocialLinks).filter(
+  // Filter out invalid social links
+  const validLinks = socialLinks.filter(
     (link) => link && link.href && link.href.trim() !== "" && link.href !== "#",
   );
 
-  const linkCount = links.length;
-  const maxTiltY = 15;
-
-  // keep platform hover helpers if you want tint-on-hover later
-  const getPlatformHoverClass = (platform) => {
-    const hoverColors = {
-      github: "hover:text-white",
-      linkedin: "hover:text-white",
-      twitter: "hover:text-white",
-      portfolio: "hover:text-white",
-      email: "hover:text-white",
-    };
-    return hoverColors[platform] || "hover:text-white";
-  };
-
-  // THE NEW, CONSISTENT THEME-AWARE CLASSES
-  // This area always adapts to the DaisyUI/ Tailwind theme (base-100 / base-content)
+  // Theme-aware CSS classes for consistent styling
   const LINKS_WRAPPER_CLASS =
     "mt-3 rounded-2xl px-3 sm:px-4 py-2 flex items-center justify-center gap-2 sm:gap-3 " +
-    // theme-aware panel: uses base-100 so it changes with the theme
-    // opacity + backdrop blur keep it legible over card artwork
     "bg-base-100/80 backdrop-blur-sm border border-base-content/10";
 
   const LINK_BUTTON_CLASS =
-    // the buttons use text-base-content so icons inherit theme text color
-    // subtle border keeps shape; scale on hover for a tactile feel
-    "p-1.5 sm:p-2 rounded-lg inline-flex items-center justify-center text-base-content transition-all duration-200 border border-base-content/6 hover:scale-105";
+    "p-1.5 sm:p-2 rounded-lg inline-flex items-center justify-center text-base-content " +
+    "transition-all duration-200 border border-base-content/6 hover:scale-105 hover:bg-base-content/5";
 
-  const handleMouseMove = (e) => {
+  // Platform-specific hover colors
+  const getPlatformHoverClass = (platform?: string): string => {
+    const hoverColors: Record<string, string> = {
+      github: "hover:text-white hover:bg-gray-800/20",
+      linkedin: "hover:text-blue-500 hover:bg-blue-500/10",
+      twitter: "hover:text-sky-400 hover:bg-sky-400/10",
+      portfolio: "hover:text-purple-400 hover:bg-purple-400/10",
+      email: "hover:text-green-400 hover:bg-green-400/10",
+    };
+    return platform
+      ? hoverColors[platform] || "hover:text-white"
+      : "hover:text-white";
+  };
+
+  // Mouse move handler for tilt effect
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = cardRef.current;
-    if (!card) return;
+    if (!card || isFlipping.current) return;
 
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -75,7 +89,7 @@ export default function ProfileCard({
 
     const target = baseRotationRef.current + tiltY;
     gsap.to(card, {
-      duration: isFlipping.current ? 0 : 0.25,
+      duration: 0.25,
       rotationY: target,
       transformPerspective: 1000,
       transformOrigin: "center",
@@ -84,22 +98,26 @@ export default function ProfileCard({
     });
   };
 
+  // Mouse leave handler - reset tilt
   const handleMouseLeave = () => {
     const card = cardRef.current;
     if (!card) return;
+
     rotationRef.current.y = 0;
     gsap.to(card, {
-      duration: 0.4,
+      duration: resetTiltDuration,
       rotationY: baseRotationRef.current,
       ease: "power2.out",
       overwrite: true,
     });
   };
 
+  // Click handler for flip
   const handleClick = () => {
     const card = cardRef.current;
     if (!card) return;
 
+    // Kill any ongoing animation
     if (isFlipping.current && currentTweenRef.current) {
       currentTweenRef.current.kill();
     }
@@ -112,7 +130,7 @@ export default function ProfileCard({
     baseRotationRef.current += flipAngle * direction;
 
     currentTweenRef.current = gsap.to(card, {
-      duration: 0.6,
+      duration: flipDuration,
       rotationY: baseRotationRef.current,
       transformPerspective: 1000,
       transformOrigin: "center",
@@ -127,22 +145,42 @@ export default function ProfileCard({
     });
   };
 
+  // Keyboard handler for accessibility
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (currentTweenRef.current) {
+        currentTweenRef.current.kill();
+      }
+    };
+  }, []);
+
   return (
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       role="button"
       aria-pressed={flipped}
+      aria-label={`Profile card for ${name}. Click to flip.`}
       tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleClick(e);
-        }
-      }}
-      className={`relative w-64 sm:w-72 md:w-80 h-[480px] sm:h-[520px] md:h-[560px] rounded-3xl bg-gradient-to-b ${bgGradientClass} p-6 text-center border ${borderClass} cursor-pointer shadow-2xl hover:shadow-3xl transition-shadow duration-300`}
+      className={`
+        relative w-64 sm:w-72 md:w-80 h-[480px] sm:h-[520px] md:h-[560px] 
+        rounded-3xl bg-gradient-to-b ${bgGradientClass} p-6 text-center 
+        border ${borderClass} cursor-pointer shadow-2xl hover:shadow-3xl 
+        transition-shadow duration-300 focus:outline-none focus:ring-2 
+        focus:ring-primary focus:ring-offset-2 focus:ring-offset-background
+        ${className}
+      `}
       style={{
         transformStyle: "preserve-3d",
         willChange: "transform",
@@ -159,31 +197,33 @@ export default function ProfileCard({
           transform: "rotateY(0deg)",
         }}
       >
-        <div className="mb-3">
-          <h2 className={`text-xl sm:text-2xl font-bold ${accentClass}`}>
+        {/* Header */}
+        <div className="mb-3 flex-shrink-0">
+          <h2 className={`text-xl sm:text-2xl font-bold ${accentClass} mb-2`}>
             {name}
           </h2>
 
           <div className={LINKS_WRAPPER_CLASS}>
-            <p className={`text-xs sm:text-sm mt-1`}>{role}</p>
+            <p className={`text-xs sm:text-sm ${roleColor}`}>{role}</p>
           </div>
         </div>
 
-        <div className="flex-1 flex items-center justify-center relative min-h-0">
-          <div className="w-full h-full rounded-2xl overflow-hidden">
+        {/* Image */}
+        <div className="flex-1 flex items-center justify-center relative min-h-0 mb-3">
+          <div className="w-full h-full rounded-2xl overflow-hidden shadow-lg">
             <img
               src={image}
-              alt={`${name} profile`}
+              alt={`${name}'s profile`}
               className="w-full h-full object-cover object-top transition-transform duration-300 hover:scale-105"
               loading="lazy"
             />
           </div>
         </div>
 
-        {/* NEW: consistent, theme-aware links wrapper */}
-        {links.length > 0 && (
-          <div className={LINKS_WRAPPER_CLASS}>
-            {links.map((social, index) => {
+        {/* Social Links */}
+        {validLinks.length > 0 && (
+          <div className={`${LINKS_WRAPPER_CLASS} flex-shrink-0`}>
+            {validLinks.map((social, index) => {
               const Icon = social.icon;
               return (
                 <a
@@ -193,12 +233,9 @@ export default function ProfileCard({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className={`${LINK_BUTTON_CLASS} ${getPlatformHoverClass(
-                    social.platform,
-                  )}`}
+                  className={`${LINK_BUTTON_CLASS} ${getPlatformHoverClass(social.platform)}`}
                   title={social.label}
                 >
-                  {/* Lucide icons use currentColor, so they inherit text-base-content */}
                   <Icon className="w-5 h-5" />
                 </a>
               );
@@ -226,14 +263,15 @@ export default function ProfileCard({
         {backContent ? (
           backContent
         ) : (
-          <div className="text-center w-full flex flex-col items-center">
+          <div className="text-center w-full flex flex-col items-center gap-4">
             <h3 className={`text-lg font-semibold ${accentClass}`}>
               More about {name}
             </h3>
-            <p className={`text-xs sm:text-sm ${roleColor} my-2`}>{role}</p>
-            {linkCount > 0 && (
+            <p className={`text-xs sm:text-sm ${roleColor}`}>{role}</p>
+
+            {validLinks.length > 0 && (
               <div className={LINKS_WRAPPER_CLASS}>
-                {links.map((social, index) => {
+                {validLinks.map((social, index) => {
                   const Icon = social.icon;
                   return (
                     <a
@@ -243,9 +281,7 @@ export default function ProfileCard({
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className={`${LINK_BUTTON_CLASS} ${getPlatformHoverClass(
-                        social.platform,
-                      )}`}
+                      className={`${LINK_BUTTON_CLASS} ${getPlatformHoverClass(social.platform)}`}
                       title={social.label}
                     >
                       <Icon className="w-5 h-5" />
@@ -259,4 +295,6 @@ export default function ProfileCard({
       </div>
     </div>
   );
-}
+};
+
+export default ProfileCard;
