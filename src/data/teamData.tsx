@@ -82,7 +82,7 @@ export const teamMembers: TeamMember[] = [
     bio: "Leading CyberNexus with vision and design excellence",
     departmentRoles: [
       { departmentId: "leadership", role: "Club Leader", isLead: true },
-      { departmentId: "design", role: "Design Lead", isLead: true },
+      { departmentId: "design", role: "Design Lead", isLead: false },
       {
         departmentId: "external",
         role: "External Relations",
@@ -92,7 +92,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 2,
-    name: "Sofiane Dex",
+    name: "OULD Hocine Sofiane",
     image: "/images/team/sofiane-image-front.jpg",
     socialLinks: [],
     bio: "Driving media strategy and club operations",
@@ -103,9 +103,12 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 3,
-    name: "Tounsi",
+    name: "Tounsi Abd Essamed",
     image: "/images/team/tounssi-image-front.jpg",
-    socialLinks: [],
+    socialLinks: [
+      { icon: "Globe", href: "https://port-folio-hvbi.vercel.app/", label: "Portfolio" },
+      { icon: "Mail", href: "mailto:mcboosabdo@gmail.com", label: "Email" },
+    ],
     departmentRoles: [
       { departmentId: "leadership", role: "General Secretary" },
       { departmentId: "media", role: "Content Creator" },
@@ -113,28 +116,35 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 4,
-    name: "Aya",
+    name: "Gaza Aya",
     image: "/images/team/aya-image-front.png",
+    bio: "حينمـــا تلتــــــقي الكلمـــــــــة بألـــــف حـرف",
     socialLinks: [],
-    departmentRoles: [{ departmentId: "media", role: "Club Writer" }],
+    departmentRoles: [
+      { departmentId: "media", role: "Club Writer" },
+      { departmentId: "hr", role: "Member" },
+    ],
   },
   {
     id: 5,
     name: "Soltana",
     image: "/images/team/soltana-iamge-front.png",
     socialLinks: [],
-    departmentRoles: [{ departmentId: "leadership", role: "Legal Advisor" }],
+    departmentRoles: [{ departmentId: "hr", role: "Legal Advisor" }],
   },
   {
     id: 6,
-    name: "Riad",
+    name: "Benghanem Riad",
     image: "/images/team/riad-image-front.png",
-    socialLinks: [],
+    bio: "Just chill 🦦",
+    socialLinks: [
+      { icon: "Mail", href: "mailto:achrafriadh123456@gmail.com", label: "Email" },
+    ],
     departmentRoles: [{ departmentId: "hr", role: "HR Lead", isLead: true }],
   },
   {
     id: 7,
-    name: "Hafid",
+    name: "MATELA Abdelhafid",
     image: "/images/team/hafid-image-front.png",
     socialLinks: [],
     departmentRoles: [
@@ -144,16 +154,24 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 8,
-    name: "Ahlem",
+    name: "Moussa Ahlem",
     image: "/images/team/ahlem-image-front.png",
-    socialLinks: [],
+    bio: "Passion for people, dedication to excellence.",
+    socialLinks: [
+      { icon: "Send", href: "https://t.me/+213555865385", label: "Telegram" },
+    ],
     departmentRoles: [{ departmentId: "hr", role: "HR Team Member" }],
   },
   {
     id: 9,
-    name: "Wissam",
+    name: "Bedoui Denia",
     image: "/images/team/wissam-image-front.png",
-    socialLinks: [],
+    bio: "Layers in the gaps.",
+    socialLinks: [
+      { icon: "Github", href: "https://github.com/wssmei", label: "GitHub" },
+      { icon: "Linkedin", href: "https://www.linkedin.com/in/deniabedoui/", label: "LinkedIn" },
+      { icon: "Globe", href: "https://www.behance.net/deniabd", label: "Behance" },
+    ],
     departmentRoles: [
       { departmentId: "hr", role: "HR Team Member" },
       { departmentId: "design", role: "Designer" },
@@ -161,8 +179,8 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 10,
-    name: "Manel",
-    image: "/images/team/manel-image-front.png",
+    name: "Benzarfa Rania Manel",
+    image: "/images/team/rania-image-front.png",
     socialLinks: [],
     departmentRoles: [{ departmentId: "hr", role: "HR Team Member" }],
   },
@@ -178,23 +196,29 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 12,
-    name: "Rafika",
+    name: "Rafika Rohdea",
     image: "/images/team/rafika-image-front.png",
-    socialLinks: [],
+    bio: "Embodiment of ideas into an unforgettable reality.",
+    socialLinks: [
+      { icon: "Github", href: "https://github.com/rafikarohdea", label: "Github" },
+    ],
     departmentRoles: [{ departmentId: "hr", role: "HR Team Member" }],
   },
   {
     id: 27,
     name: "Fatah",
     image: "/images/team/fatah-image-front.png",
+    bio: "Try to show your best, not what others deem the best",
     socialLinks: [],
     departmentRoles: [{ departmentId: "hr", role: "HR Team Member" }],
   },
   {
     id: 13,
-    name: "Lounis",
+    name: "Mendjour Lounis",
     image: "/images/team/lounis-image-front.png",
-    socialLinks: [],
+    socialLinks: [
+      { icon: "Globe", href: "https://www.instagram.com/mendjour.lounis", label: "Instagram" },
+    ],
     departmentRoles: [
       {
         departmentId: "external",
@@ -205,7 +229,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 14,
-    name: "Kawther",
+    name: "Hadjadj Kawther",
     image: "/images/team/kawther-image-front.png",
     socialLinks: [],
     departmentRoles: [
@@ -214,19 +238,23 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 15,
-    name: "Samira",
+    name: "Samira Mostefaoui",
     image: "/images/team/samira-image-front.png",
     socialLinks: [],
     departmentRoles: [{ departmentId: "media", role: "Photographer" }],
   },
   {
     id: 16,
-    name: "Chikhaoui",
+    name: "Chikhaoui Ahmed",
     image: "/images/team/chikhaoui-image-front.png",
-    socialLinks: [],
+    bio: "._.",
+    socialLinks: [
+      { icon: "Github", href: "https://github.com/mrahmed14", label: "GitHub" },
+      { icon: "Globe", href: "https://www.mrahmed.org/", label: "Portfolio" },
+    ],
     departmentRoles: [
       { departmentId: "media", role: "Photographer" },
-      { departmentId: "design", role: "Designer" },
+      { departmentId: "design", role: "Designer" , isLead: true },
       { departmentId: "development", role: "Developer" },
     ],
   },
@@ -242,14 +270,15 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 18,
-    name: "Reggad",
+    name: "Mohamed Reggad",
     image: "/images/team/reggad-image-front.png",
+    bio: "Here for anything related to spreading benefit",
     socialLinks: [],
-    departmentRoles: [{ departmentId: "media", role: "Media Member" }],
+    departmentRoles: [{ departmentId: "media", role: "Video Editor" }],
   },
   {
     id: 19,
-    name: "Hakim",
+    name: "Hakim Ait Abderrahim",
     image: "/images/team/hakim-image-front.jpg",
     socialLinks: [],
     departmentRoles: [
@@ -276,30 +305,34 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 22,
-    name: "Adda",
+    name: "Missoum Hadi Adda",
     image: "/images/team/adda-image-front.jpg",
     socialLinks: [],
     departmentRoles: [{ departmentId: "development", role: "Developer" }],
   },
   {
     id: 23,
-    name: "Adam",
+    name: "Adam Rhmni",
     image: "/images/team/adam-image-front.jpg",
     socialLinks: [],
     departmentRoles: [{ departmentId: "development", role: "Developer" }],
   },
   {
     id: 24,
-    name: "Bachir",
+    name: "Bousbia Mouhhamed Bachir",
     image: "/images/team/bachir-iamge-front.jpg",
     socialLinks: [],
     departmentRoles: [{ departmentId: "development", role: "Developer" }],
   },
   {
     id: 25,
-    name: "Noureddine",
+    name: "Noureddine Yahia",
     image: "/images/team/noureddine-image-front.jpg",
-    socialLinks: [],
+    bio: "Coding my way to better solution",
+    socialLinks: [
+      { icon: "Github", href: "https://github.com/Yahia47", label: "GitHub" },
+      { icon: "Linkedin", href: "https://www.linkedin.com/in/merdjet-yahia-noureddine-510a94255 /", label: "LinkedIn" },
+    ],
     departmentRoles: [{ departmentId: "development", role: "Developer" }],
   },
   {
