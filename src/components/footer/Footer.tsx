@@ -76,7 +76,7 @@ const Footer = () => {
               <div className="space-y-5">
                 <Title
                   text="CyberNexus"
-                  className="text-5xl bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent uppercase"
+                  className="text-4xl sm:text-5xl bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent uppercase"
                 />
 
                 <p className="text-base-content/70 leading-relaxed text-base font-mono">

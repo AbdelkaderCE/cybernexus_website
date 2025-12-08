@@ -76,7 +76,7 @@ const HeroSection: React.FC = () => {
       >
         <Title
           text="CyberNexus"
-          className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl mb-4 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent uppercase leading-[0.9] break-words hyphens-auto"
+          className="text-5xl sm:text-7xl md:text-8xl mb-4 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent uppercase leading-[0.9] break-words hyphens-auto"
         />
       </div>
 

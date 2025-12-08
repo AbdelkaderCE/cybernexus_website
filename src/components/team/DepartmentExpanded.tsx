@@ -252,7 +252,7 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
 
           {/* Department title */}
           <div ref={titleRef}>
-            <div className="flex items-center justify-center gap-2 sm:gap-4 mb-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-2">
               <div className="text-primary flex-shrink-0">
                 <IconComponent
                   className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12"
@@ -280,15 +280,15 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-4 sm:mt-6">
               <Button
                 onClick={onBack}
-                className="font-mono text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 group min-h-[44px] px-6 w-full sm:w-auto shadow-lg hover:shadow-xl"
+                className="font-mono text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 group px-3 sm:px-4 py-1.5 sm:py-2 w-full sm:w-auto shadow-lg hover:shadow-xl"
               >
-                <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+                <ArrowLeft className="size-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                 BACK
               </Button>
 
               <Badge
                 variant="outline"
-                className="border-primary/50 bg-background/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 font-mono text-xs w-full sm:w-auto justify-center"
+                className="border-primary/50 bg-background/80 backdrop-blur-sm px-3 sm:px-4 py-2.5 font-mono text-xs w-full sm:w-auto justify-center"
               >
                 <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 inline" />
                 {departmentMembers.length} MEMBER

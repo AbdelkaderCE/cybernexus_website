@@ -97,7 +97,7 @@ const TeamSection: React.FC = () => {
 
           {/* Description */}
           <div ref={contentRef} className="space-y-4 sm:space-y-6">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground font-mono leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground font-mono leading-tight">
               <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
                 We Are
               </span>
@@ -144,8 +144,7 @@ const TeamSection: React.FC = () => {
               <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
                 Journey
               </span>
-            </h3>
-            <Terminal className="w-3 h-3 sm:w-4 sm:h-4 text-primary flex-shrink-0" />
+            </h3> 
           </div>
 
           <div ref={carouselRef}>
