@@ -19,6 +19,7 @@ interface DepartmentExpandedProps {
 
 const DESKTOP_QUERY = "(min-width: 1024px)";
 const TABLET_QUERY = "(min-width: 640px)";
+
 const clamp = (v: number, a = 0, b = 100) => Math.max(a, Math.min(b, v));
 
 const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
@@ -31,34 +32,39 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
     (LucideIcons as any)[department.icon] || LucideIcons.Box;
 
   // Animation refs with RGB CHROMATIC ABERRATION glitch effects
-  const backButtonRef = useCyberScrollAnimation({
-    animation: "cyberGlitchLeft",
-    duration: 0.8,
-    delay: 0.1,
-  });
-
   const badgeRef = useCyberScrollAnimation({
     animation: "cyberGlitchCenter",
     duration: 0.8,
     delay: 0.2,
+    once: true,
   });
 
-  const headerRef = useCyberScrollAnimation({
+  const titleRef = useCyberScrollAnimation({
     animation: "cyberGlitchCenter",
     duration: 1.2,
     delay: 0.3,
+    once: true,
   });
 
   const descriptionRef = useCyberScrollAnimation({
     animation: "cyberGlitchCenter",
     duration: 0.8,
     delay: 0.4,
+    once: true,
+  });
+
+  const actionsRef = useCyberScrollAnimation({
+    animation: "cyberGlitchCenter",
+    duration: 0.8,
+    delay: 0.5,
+    once: true,
   });
 
   const networkRef = useCyberScrollAnimation({
     animation: "cyberGlitchCenter",
     duration: 1.4,
-    delay: 0.5,
+    delay: 0.6,
+    once: true,
   });
 
   const [isHorizontal, setIsHorizontal] = useState<boolean>(() => {
@@ -73,6 +79,7 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
     const mq = window.matchMedia(DESKTOP_QUERY);
     const mqTablet = window.matchMedia(TABLET_QUERY);
 
@@ -124,8 +131,8 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
 
     const leads = members.filter((m) => m.isLeadInDepartment);
     const regulars = members.filter((m) => !m.isLeadInDepartment);
-    const layerGroups: number[][] = [];
 
+    const layerGroups: number[][] = [];
     if (leads.length > 0) {
       layerGroups.push(leads.map((l) => l.id));
     }
@@ -133,6 +140,7 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
     if (regulars.length > 0) {
       const membersPerLayer = Math.ceil(Math.sqrt(regulars.length * 1.2));
       const numLayers = Math.ceil(regulars.length / membersPerLayer);
+
       for (let layerIdx = 0; layerIdx < numLayers; layerIdx++) {
         const layerStart = layerIdx * membersPerLayer;
         const layerEnd = Math.min(
@@ -147,19 +155,18 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
     const positions: Array<{ id: number; x: number; y: number }> = [];
     const numLayers = layerGroups.length;
 
-    // Enhanced spacing for different screen sizes
     const availableSpan = isHorizontal ? 60 : isTablet ? 70 : 78;
     const maxSpacing = isHorizontal ? 22 : isTablet ? 30 : 38;
     const spacing =
       numLayers <= 1
         ? 0
         : Math.min(maxSpacing, availableSpan / Math.max(numLayers - 1, 1));
+
     const startMain = centerPct - ((numLayers - 1) * spacing) / 2;
 
     layerGroups.forEach((layer, layerIdx) => {
       const layerCount = Math.max(layer.length, 1);
 
-      // Enhanced cross spacing to prevent overlap
       const crossAvailableSpan = isHorizontal ? 70 : isTablet ? 75 : 82;
       const maxCrossSpacing = isHorizontal ? 25 : isTablet ? 32 : 42;
       const crossSpacing =
@@ -169,6 +176,7 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
               maxCrossSpacing,
               crossAvailableSpan / Math.max(layerCount - 1, 1),
             );
+
       const startCross = centerPct - ((layerCount - 1) * crossSpacing) / 2;
       const mainPos = clamp(startMain + layerIdx * spacing, 8, 92);
 
@@ -229,21 +237,9 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
   return (
     <section className="relative min-h-screen py-12 sm:py-16 lg:py-20 px-3 sm:px-6 lg:px-10 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10 lg:space-y-12 relative z-10">
-        {/* Back button - LEFT GLITCH with RGB */}
-        <div ref={backButtonRef}>
-          <Button
-            variant="outline"
-            onClick={onBack}
-            className="font-mono text-sm border-primary/50 bg-background/80 hover:bg-primary/90 hover:text-primary-foreground transition-all duration-200 backdrop-blur-sm group min-h-[44px] px-4"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-            BACK
-          </Button>
-        </div>
-
         {/* Header Section */}
         <div className="text-center space-y-4 sm:space-y-6">
-          {/* Badge - CENTER GLITCH with RGB */}
+          {/* Badge */}
           <div ref={badgeRef} className="flex justify-center">
             <Badge
               variant="outline"
@@ -254,8 +250,8 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
             </Badge>
           </div>
 
-          {/* Department title - CENTER GLITCH with RGB */}
-          <div ref={headerRef}>
+          {/* Department title */}
+          <div ref={titleRef}>
             <div className="flex items-center justify-center gap-2 sm:gap-4 mb-2">
               <div className="text-primary flex-shrink-0">
                 <IconComponent
@@ -271,18 +267,28 @@ const DepartmentExpanded: React.FC<DepartmentExpandedProps> = ({
             </div>
           </div>
 
-          {/* Description - CENTER GLITCH with RGB */}
+          {/* Description */}
           <div ref={descriptionRef}>
             <p className="text-sm sm:text-base lg:text-lg text-foreground/80 max-w-3xl mx-auto leading-relaxed font-mono px-4">
               <span className="text-primary animate-pulse-slow">&gt;_</span>{" "}
               {department.description}
             </p>
+          </div>
 
-            {/* Member count badge */}
-            <div className="mt-3 sm:mt-4">
+          {/* Back button and Member count */}
+          <div ref={actionsRef}>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-4 sm:mt-6">
+              <Button
+                onClick={onBack}
+                className="font-mono text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 group min-h-[44px] px-6 w-full sm:w-auto shadow-lg hover:shadow-xl"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+                BACK
+              </Button>
+
               <Badge
                 variant="outline"
-                className="border-primary/50 bg-background/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 font-mono text-xs"
+                className="border-primary/50 bg-background/80 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 font-mono text-xs w-full sm:w-auto justify-center"
               >
                 <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 inline" />
                 {departmentMembers.length} MEMBER
