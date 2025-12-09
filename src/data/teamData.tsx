@@ -78,13 +78,6 @@ export const departments: Department[] = [
       "Shapes the club's visual identity, UI/UX for products, and produces assets for campaigns, events, and digital presence.",
     icon: "Palette",
   },
-  // {
-  //   id: "tech",
-  //   name: "Tech Department",
-  //   description:
-  //     "Researches and experiments with emerging technologies, runs workshops and tech-focused initiatives to upskill members.",
-  //   icon: "Brain",
-  // },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -97,7 +90,6 @@ export const teamMembers: TeamMember[] = [
     departmentRoles: [
       { departmentId: "leadership", role: "Club Leader", isLead: true },
       { departmentId: "design", role: "UI/UX Designer", isLead: false },
-      // { departmentId: "tech", role: "UI/UX Leader", isLead: false },
       {
         departmentId: "external",
         role: "External Relations",
@@ -131,7 +123,6 @@ export const teamMembers: TeamMember[] = [
     departmentRoles: [
       { departmentId: "leadership", role: "General Secretary" },
       { departmentId: "media", role: "Content Creator" },
-      // { departmentId: "tech", role: "AI Leader"},
     ],
   },
   {
@@ -262,9 +253,7 @@ export const teamMembers: TeamMember[] = [
     image: "/images/team/aziz-image-front.png",
     bio: "",
     socialLinks: [],
-    departmentRoles: [
-      // { departmentId: "tech", role: "Network Leader" }
-    ],
+    departmentRoles: [],
   },
   {
     id: 30,
@@ -272,9 +261,7 @@ export const teamMembers: TeamMember[] = [
     image: "/images/team/karim-image-front.png",
     bio: "",
     socialLinks: [],
-    departmentRoles: [
-      // { departmentId: "tech", role: "Network Co-Leader" }
-    ],
+    departmentRoles: [],
   },
   {
     id: 13,
@@ -351,7 +338,6 @@ export const teamMembers: TeamMember[] = [
     socialLinks: [],
     departmentRoles: [
       { departmentId: "development", role: "Lead Developer", isLead: true },
-      // { departmentId: "tech", role: "GL Leader" },
     ],
   },
   {
@@ -363,9 +349,7 @@ export const teamMembers: TeamMember[] = [
       { icon: "Github", href: "https://github.com/mlsvmdl", label: "GitHub" },
     ],
 
-    departmentRoles: [
-      { departmentId: "development", role: "Developer" },
-    ],
+    departmentRoles: [{ departmentId: "development", role: "Developer" }],
   },
   {
     id: 21,
@@ -379,10 +363,7 @@ export const teamMembers: TeamMember[] = [
     name: "Missoum Hadi Adda",
     image: "/images/team/adda-image-front.jpg",
     socialLinks: [],
-    departmentRoles: [
-      { departmentId: "development", role: "Developer" },
-      // { departmentId: "tech", role: "Software Development Leader" },
-    ],
+    departmentRoles: [{ departmentId: "development", role: "Developer" }],
   },
   {
     id: 23,
@@ -396,10 +377,7 @@ export const teamMembers: TeamMember[] = [
     name: "Bousbia Mouhhamed Bachir",
     image: "/images/team/bachir-iamge-front.jpg",
     socialLinks: [],
-    departmentRoles: [
-      { departmentId: "development", role: "Developer" },
-      // { departmentId: "tech", role: "Blockchain Leader" },
-    ],
+    departmentRoles: [{ departmentId: "development", role: "Developer" }],
   },
   {
     id: 25,
@@ -421,10 +399,7 @@ export const teamMembers: TeamMember[] = [
     name: "Amine",
     image: "/images/team/amine-image-front.jpg",
     socialLinks: [],
-    departmentRoles: [
-      { departmentId: "development", role: "Developer" },
-      // { departmentId: "tech", role: "Game dev Leader" },
-    ],
+    departmentRoles: [{ departmentId: "development", role: "Developer" }],
   },
 ];
 
