@@ -78,13 +78,13 @@ export const departments: Department[] = [
       "Shapes the club's visual identity, UI/UX for products, and produces assets for campaigns, events, and digital presence.",
     icon: "Palette",
   },
-  {
-    id: "tech",
-    name: "Tech Department",
-    description:
-      "Researches and experiments with emerging technologies, runs workshops and tech-focused initiatives to upskill members.",
-    icon: "Brain",
-  },
+  // {
+  //   id: "tech",
+  //   name: "Tech Department",
+  //   description:
+  //     "Researches and experiments with emerging technologies, runs workshops and tech-focused initiatives to upskill members.",
+  //   icon: "Brain",
+  // },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -97,7 +97,7 @@ export const teamMembers: TeamMember[] = [
     departmentRoles: [
       { departmentId: "leadership", role: "Club Leader", isLead: true },
       { departmentId: "design", role: "UI/UX Designer", isLead: false },
-      { departmentId: "tech", role: "UI/UX Leader", isLead: false },
+      // { departmentId: "tech", role: "UI/UX Leader", isLead: false },
       {
         departmentId: "external",
         role: "External Relations",
@@ -131,7 +131,7 @@ export const teamMembers: TeamMember[] = [
     departmentRoles: [
       { departmentId: "leadership", role: "General Secretary" },
       { departmentId: "media", role: "Content Creator" },
-      { departmentId: "tech", role: "AI Leader"},
+      // { departmentId: "tech", role: "AI Leader"},
     ],
   },
   {
@@ -164,7 +164,7 @@ export const teamMembers: TeamMember[] = [
         label: "Email",
       },
     ],
-    departmentRoles: [{ departmentId: "hr", role: "HR Lead", isLead: true }],
+    departmentRoles: [{ departmentId: "hr", role: "HR Team Member" }],
   },
   {
     id: 7,
@@ -172,7 +172,7 @@ export const teamMembers: TeamMember[] = [
     image: "/images/team/hafid-image-front.png",
     socialLinks: [],
     departmentRoles: [
-      { departmentId: "hr", role: "HR Team Member" },
+      { departmentId: "hr", role: "HR Lead", isLead: true },
       { departmentId: "development", role: "Developer" },
     ],
   },
@@ -262,7 +262,9 @@ export const teamMembers: TeamMember[] = [
     image: "/images/team/aziz-image-front.png",
     bio: "",
     socialLinks: [],
-    departmentRoles: [{ departmentId: "tech", role: "Network Leader" }],
+    departmentRoles: [
+      // { departmentId: "tech", role: "Network Leader" }
+    ],
   },
   {
     id: 30,
@@ -270,7 +272,9 @@ export const teamMembers: TeamMember[] = [
     image: "/images/team/karim-image-front.png",
     bio: "",
     socialLinks: [],
-    departmentRoles: [{ departmentId: "tech", role: "Network Co-Leader" }],
+    departmentRoles: [
+      // { departmentId: "tech", role: "Network Co-Leader" }
+    ],
   },
   {
     id: 13,
@@ -347,7 +351,7 @@ export const teamMembers: TeamMember[] = [
     socialLinks: [],
     departmentRoles: [
       { departmentId: "development", role: "Lead Developer", isLead: true },
-      { departmentId: "tech", role: "GL Leader" },
+      // { departmentId: "tech", role: "GL Leader" },
     ],
   },
   {
@@ -360,7 +364,7 @@ export const teamMembers: TeamMember[] = [
     ],
 
     departmentRoles: [
-      { departmentId: "development", role: "Developer", isLead: true },
+      { departmentId: "development", role: "Developer" },
     ],
   },
   {
@@ -377,7 +381,7 @@ export const teamMembers: TeamMember[] = [
     socialLinks: [],
     departmentRoles: [
       { departmentId: "development", role: "Developer" },
-      { departmentId: "tech", role: "Software Development Leader" },
+      // { departmentId: "tech", role: "Software Development Leader" },
     ],
   },
   {
@@ -394,7 +398,7 @@ export const teamMembers: TeamMember[] = [
     socialLinks: [],
     departmentRoles: [
       { departmentId: "development", role: "Developer" },
-      { departmentId: "tech", role: "Blockchain Leader" },
+      // { departmentId: "tech", role: "Blockchain Leader" },
     ],
   },
   {
@@ -419,7 +423,7 @@ export const teamMembers: TeamMember[] = [
     socialLinks: [],
     departmentRoles: [
       { departmentId: "development", role: "Developer" },
-      { departmentId: "tech", role: "Game dev Leader" },
+      // { departmentId: "tech", role: "Game dev Leader" },
     ],
   },
 ];
