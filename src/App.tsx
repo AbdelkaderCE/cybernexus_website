@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import MeetTheTeamPage from "./pages/MeetTheTeam";
+import { lazy, Suspense } from "react";
+const MeetTheTeamPage = lazy(() => import("./pages/MeetTheTeam"));
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -35,6 +36,14 @@ const App: React.FC = () => {
       <div className="mt-20">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route
+            path="/meet-the-team"
+            element={
+              <Suspense fallback={<div className="p-8 text-center font-mono">LOADING_TEAM...</div>}>
+                <MeetTheTeamPage />
+              </Suspense>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

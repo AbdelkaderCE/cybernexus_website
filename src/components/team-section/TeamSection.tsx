@@ -88,6 +88,10 @@ const TeamSection: React.FC = () => {
                 <img
                   src="/team-main-picture.jpg"
                   alt="CyberNexus Team"
+                  loading="lazy"
+                  decoding="async"
+                  width={1200}
+                  height={900}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />

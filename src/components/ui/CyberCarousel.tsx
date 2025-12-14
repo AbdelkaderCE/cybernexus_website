@@ -137,6 +137,9 @@ const CyberCarousel: React.FC<CyberCarouselProps> = ({
                 alt={`Team moment ${index + 1}`}
                 className="w-full h-full object-contain pointer-events-none"
                 loading="lazy"
+                decoding="async"
+                width={1600}
+                height={1000}
                 draggable="false"
                 style={{
                   textShadow:

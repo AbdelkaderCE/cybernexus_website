@@ -124,6 +124,9 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                 src={sponsor.logo}
                 alt={sponsor.name}
                 loading="lazy"
+                decoding="async"
+                width={320}
+                height={192}
                 className="max-h-full max-w-full object-contain relative z-10 hover:scale-105 transition-all duration-500 rounded-md"
               />
 
