@@ -4,10 +4,13 @@ import SponsorsSection from "@/components/sponsors-caroussel/SponsorsCaroussel";
 import TeamSection from "@/components/team-section/TeamSection";
 import WhatWeDoSection from "@/components/what-we-do-section/WhatWeDoSection";
 import MeetTheTeam from "./MeetTheTeam";
+import SEO from "@/components/SEO";
 
 const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <>
+      <SEO />
+      <div className="min-h-screen bg-background text-foreground">
       <div id="Hero">
         <HeroSection />
       </div>
@@ -28,6 +31,7 @@ const HomePage: React.FC = () => {
         <ContactSection />
       </div>
     </div>
+    </>
   );
 };
 

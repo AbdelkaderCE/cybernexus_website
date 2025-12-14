@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo, ChangeEvent } from "react";
-import { Mail, MapPin, Send, Terminal, Code2, Zap } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast";
+import { Mail, MapPin, Send, Terminal, Code2, Zap, Copy, ExternalLink, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,6 +11,11 @@ import CyberCard from "../ui/CyberCard";
 import { useCyberScrollAnimation } from "@/hooks/useCyberScrollAnimation";
 
 interface FormData {
+  email: string;
+  message: string;
+}
+
+interface FormErrors {
   email: string;
   message: string;
 }
@@ -43,8 +49,44 @@ const ContactSection: React.FC = () => {
     email: "",
     message: "",
   });
+  const [formErrors, setFormErrors] = useState<FormErrors>({
+    email: "",
+    message: "",
+  });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>(null);
+
+  // Email validation regex
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validateForm = (): boolean => {
+    const errors: FormErrors = { email: "", message: "" };
+    let isValid = true;
+
+    // Email validation
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+      isValid = false;
+    } else if (!emailRegex.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+      isValid = false;
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      errors.message = "Message is required";
+      isValid = false;
+    } else if (formData.message.trim().length < 10) {
+      errors.message = "Message must be at least 10 characters long";
+      isValid = false;
+    } else if (formData.message.length > 1000) {
+      errors.message = "Message must be less than 1000 characters";
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
+  };
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -53,30 +95,45 @@ const ContactSection: React.FC = () => {
         ...prev,
         [name]: value,
       }));
+      // Clear error for this field when user starts typing
+      if (formErrors[name as keyof FormErrors]) {
+        setFormErrors((prev) => ({
+          ...prev,
+          [name]: "",
+        }));
+      }
     },
-    [],
+    [formErrors],
   );
 
   const handleSubmit = useCallback(async () => {
+    // Validate form before submission
+    if (!validateForm()) {
+      toast.error("Please fix the errors above");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     try {
-      // Simulate API call
+      // Simulate API call (replace with actual EmailJS or API endpoint later)
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       setSubmitStatus("success");
       setFormData({ email: "", message: "" });
+      toast.success("Message sent successfully! We'll get back to you soon.");
 
       setTimeout(() => setSubmitStatus(null), 5000);
     } catch (error) {
       console.error("Error:", error);
       setSubmitStatus("error");
+      toast.error("Failed to send message. Please try again.");
       setTimeout(() => setSubmitStatus(null), 5000);
     } finally {
       setIsSubmitting(false);
     }
-  }, [formData.email, formData.message]);
+  }, [formData]);
 
   const systemStatus = useMemo(
     () => (isSubmitting ? "BUSY" : "READY"),
@@ -88,7 +145,7 @@ const ContactSection: React.FC = () => {
     [isSubmitting],
   );
 
-  const isFormValid = formData.email && formData.message;
+  const isFormValid = formData.email && formData.message && !formErrors.email && !formErrors.message;
 
   // Animation refs with RGB CHROMATIC ABERRATION glitch effects
   const headerBadgeRef = useCyberScrollAnimation({
@@ -207,9 +264,18 @@ const ContactSection: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="you@example.com"
-                      className="pl-10 sm:pl-12 bg-background/90 border-2 border-primary/20 focus:border-primary font-mono hover:border-primary/40 h-10 sm:h-12"
+                      className={`pl-10 sm:pl-12 bg-background/90 border-2 font-mono h-10 sm:h-12 ${
+                        formErrors.email
+                          ? "border-error/50 focus:border-error"
+                          : "border-primary/20 focus:border-primary hover:border-primary/40"
+                      }`}
                     />
                   </div>
+                  {formErrors.email && (
+                    <p className="text-error text-xs sm:text-sm font-mono">
+                      ✗ {formErrors.email}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2 flex-grow flex flex-col">
@@ -226,8 +292,17 @@ const ContactSection: React.FC = () => {
                     onChange={handleChange}
                     rows={6}
                     placeholder="Tell us what you're interested in..."
-                    className="bg-background/90 border-2 border-primary/20 focus:border-primary font-mono hover:border-primary/40 resize-none flex-grow"
+                    className={`bg-background/90 border-2 font-mono hover:border-primary/40 resize-none flex-grow ${
+                      formErrors.message
+                        ? "border-error/50 focus:border-error"
+                        : "border-primary/20 focus:border-primary"
+                    }`}
                   />
+                  {formErrors.message && (
+                    <p className="text-error text-xs sm:text-sm font-mono">
+                      ✗ {formErrors.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="mt-auto space-y-4">
@@ -309,9 +384,10 @@ const ContactSection: React.FC = () => {
               </div>
 
               <div className="space-y-4 sm:space-y-6 flex-grow flex flex-col">
-                <div className="flex items-start gap-2 sm:gap-3 text-foreground/80 bg-background/40 p-3 sm:p-4 rounded-lg border border-secondary/20">
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-1 text-secondary flex-shrink-0" />
-                  <div className="font-mono text-xs sm:text-sm">
+                {/* Location Info Card */}
+                <div className="flex items-start gap-2 sm:gap-3 text-foreground/80 bg-gradient-to-r from-secondary/10 to-secondary/5 p-3 sm:p-4 rounded-lg border-2 border-secondary/30 hover:border-secondary/60 transition-all duration-300">
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-1 text-secondary flex-shrink-0 animate-pulse" />
+                  <div className="font-mono text-xs sm:text-sm flex-grow">
                     <p className="font-bold text-foreground">
                       <span className="text-secondary">&gt;</span> Ibn Khaldoun
                       University
@@ -320,24 +396,73 @@ const ContactSection: React.FC = () => {
                       Faculty of Mathematics and Computer Science
                     </p>
                     <p className="text-foreground/70">Tiaret, Algeria</p>
+                    <p className="text-secondary/80 text-xs mt-1">📍 35.3505°N, 1.3209°E</p>
                   </div>
                 </div>
 
-                <div className="w-full flex-grow rounded-xl overflow-hidden border-2 border-secondary/30 relative shadow-2xl hover:border-secondary/50 transition-all duration-300 min-h-[300px]">
+                {/* Interactive Map Container */}
+                <div className="w-full flex-grow rounded-xl overflow-hidden border-2 border-secondary/30 relative shadow-2xl hover:shadow-secondary/50 hover:border-secondary/60 transition-all duration-300 min-h-[300px] group">
+                  {/* Map Overlay Gradient */}
+                  <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-5 bg-gradient-to-br from-secondary to-transparent transition-opacity duration-300 z-10" />
+                  
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2736.4522640683!2d1.3209439433091803!3d35.350471531917535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1286d1b08df59eab%3A0xd7ba2589aab1d516!2z2YPZhNmK2Kkg2KfZhNix2YrYp9i22YrYp9iqINmIINin2YTYp9i52YTYp9mFINin2YTYotmE2Yo!5e0!3m2!1sen!2sdz!4v1762766791505!5m2!1sen!2sdz"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2736.4522640683!2d1.3209439433091803!3d35.350471531917535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1286d1b08df59eab%3A0xd7ba2589aab1d516!2z2YPZhNmK2Kkg2KfZhNix2YrYp9i22YrYp9iqINmIINin2YTYp9i52YTYp9mFINin2YTYotmE2Yo!5e0!3m2!1sen!2sdz!4f13.1&style=feature:all|element:labels|visibility:off&style=feature:water|color:0x000000&style=feature:road|color:0x222222&style=feature:landscape|color:0x0a0a0a&style=feature:administrative|element:geometry.stroke|color:0x00d9ff|visibility:on&style=feature:poi|visibility:off"
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
+                    style={{ border: 0, filter: "brightness(0.95) contrast(1.1)" }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Ibn Khaldoun University Tiaret Location"
-                    className="absolute inset-0"
+                    className="absolute inset-0 transition-all duration-300 group-hover:brightness-100"
                   />
                 </div>
 
-                <div className="flex flex-wrap gap-2 mt-auto">
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-2 mt-auto">
+                  <button
+                    onClick={() => {
+                      window.open(
+                        "https://www.google.com/maps/place/Ibn+Khaldoun+University/@35.350471,1.320944,15z",
+                        "_blank"
+                      );
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-secondary/20 hover:bg-secondary/40 text-secondary border border-secondary/50 hover:border-secondary rounded-lg font-mono text-xs sm:text-sm font-bold transition-all duration-300 group"
+                  >
+                    <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    <span className="hidden sm:inline">OPEN_IN_MAPS</span>
+                    <span className="sm:hidden">OPEN</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText("35.3505°N, 1.3209°E");
+                      toast.success("Coordinates copied!");
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-accent/20 hover:bg-accent/40 text-accent border border-accent/50 hover:border-accent rounded-lg font-mono text-xs sm:text-sm font-bold transition-all duration-300 group"
+                  >
+                    <Copy className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                    <span className="hidden sm:inline">COPY_COORDS</span>
+                    <span className="sm:hidden">COPY</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      window.open(
+                        "https://www.google.com/maps/dir/?api=1&destination=35.350471,1.320944",
+                        "_blank"
+                      );
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-primary/20 hover:bg-primary/40 text-primary border border-primary/50 hover:border-primary rounded-lg font-mono text-xs sm:text-sm font-bold transition-all duration-300 group"
+                  >
+                    <Navigation className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+                    <span className="hidden sm:inline">DIRECTIONS</span>
+                    <span className="sm:hidden">NAV</span>
+                  </button>
+                </div>
+
+                {/* Status Indicators */}
+                <div className="flex flex-wrap gap-2">
                   <StatusIndicator label="GPS" value="LOCKED" type="success" />
                   <StatusIndicator
                     label="SIGNAL"
@@ -355,6 +480,18 @@ const ContactSection: React.FC = () => {
           </div>
         </div>
       </div>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: "#1a1a2e",
+            color: "#00d9ff",
+            border: "2px solid #00d9ff",
+            borderRadius: "8px",
+            fontFamily: "monospace",
+          },
+        }}
+      />
     </section>
   );
 };

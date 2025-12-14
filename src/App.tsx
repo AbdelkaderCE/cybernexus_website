@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MeetTheTeamPage from "./pages/MeetTheTeam";
+import NotFound from "./pages/NotFound";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 
@@ -34,7 +35,7 @@ const App: React.FC = () => {
       <div className="mt-20">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
       <Footer />
