@@ -158,18 +158,18 @@ const CyberCarousel: React.FC<CyberCarouselProps> = ({
         {/* Navigation Buttons - Hidden on mobile */}
         <button
           onClick={goToPrevious}
-          className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-background/90 border border-primary/30 rounded hover:bg-primary/20 hover:border-primary transition-colors duration-200"
+          className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-background/90 border border-primary/30 rounded hover:bg-primary/20 hover:border-primary transition-all duration-200 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           aria-label="Previous photo"
         >
-          <ChevronLeft className="w-5 h-5 text-primary" />
+          <ChevronLeft className="w-5 h-5 text-primary group-hover:translate-x-0.5 transition-transform" />
         </button>
 
         <button
           onClick={goToNext}
-          className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-background/90 border border-primary/30 rounded hover:bg-primary/20 hover:border-primary transition-colors duration-200"
+          className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-background/90 border border-primary/30 rounded hover:bg-primary/20 hover:border-primary transition-all duration-200 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           aria-label="Next photo"
         >
-          <ChevronRight className="w-5 h-5 text-primary" />
+          <ChevronRight className="w-5 h-5 text-primary group-hover:-translate-x-0.5 transition-transform" />
         </button>
 
         {/* Bottom Control Bar */}
@@ -216,13 +216,13 @@ const CyberCarousel: React.FC<CyberCarouselProps> = ({
             {/* Play/Pause button - larger on mobile */}
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="p-2 sm:p-2.5 bg-background/90 border border-primary/30 rounded hover:bg-primary/20 hover:border-primary transition-colors duration-200 active:scale-95"
+              className="p-2 sm:p-2.5 bg-background/90 border border-primary/30 rounded hover:bg-primary/20 hover:border-primary transition-all duration-200 active:scale-95 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
               aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
             >
               {isPlaying ? (
-                <Pause className="w-5 h-5 sm:w-4 sm:h-4 text-primary" />
+                <Pause className="w-5 h-5 sm:w-4 sm:h-4 text-primary group-hover:scale-110 transition-transform" />
               ) : (
-                <Play className="w-5 h-5 sm:w-4 sm:h-4 text-primary" />
+                <Play className="w-5 h-5 sm:w-4 sm:h-4 text-primary group-hover:scale-110 transition-transform" />
               )}
             </button>
           </div>

@@ -270,24 +270,38 @@ const ContactSection: React.FC = () => {
                       className={`pl-10 sm:pl-12 bg-background/90 border-2 font-mono h-10 sm:h-12 ${
                         formErrors.email
                           ? "border-error/50 focus:border-error"
+                          : formData.email && emailRegex.test(formData.email)
+                          ? "border-success/50 focus:border-success"
                           : "border-primary/20 focus:border-primary hover:border-primary/40"
                       }`}
                     />
                   </div>
-                  {formErrors.email && (
-                    <p className="text-error text-xs sm:text-sm font-mono">
-                      ✗ {formErrors.email}
-                    </p>
-                  )}
+                  <div className="flex items-center justify-between gap-2">
+                    {formErrors.email && (
+                      <p className="text-error text-xs sm:text-sm font-mono">
+                        ✗ {formErrors.email}
+                      </p>
+                    )}
+                    {!formErrors.email && formData.email && emailRegex.test(formData.email) && (
+                      <p className="text-success text-xs sm:text-sm font-mono">
+                        ✓ Valid email
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div className="space-y-2 flex-grow flex flex-col">
-                  <Label
-                    htmlFor="message"
-                    className="text-foreground font-bold font-mono text-xs sm:text-sm uppercase tracking-wider"
-                  >
-                    <span className="text-secondary">&gt;</span> Your Message
-                  </Label>
+                  <div className="flex items-center justify-between">
+                    <Label
+                      htmlFor="message"
+                      className="text-foreground font-bold font-mono text-xs sm:text-sm uppercase tracking-wider"
+                    >
+                      <span className="text-secondary">&gt;</span> Your Message
+                    </Label>
+                    <span className="text-xs font-mono text-foreground/50">
+                      {formData.message.length} / 1000
+                    </span>
+                  </div>
                   <Textarea
                     id="message"
                     name="message"
@@ -300,12 +314,25 @@ const ContactSection: React.FC = () => {
                         ? "border-error/50 focus:border-error"
                         : "border-primary/20 focus:border-primary"
                     }`}
+                    maxLength={1000}
                   />
-                  {formErrors.message && (
-                    <p className="text-error text-xs sm:text-sm font-mono">
-                      ✗ {formErrors.message}
-                    </p>
-                  )}
+                  <div className="flex items-center justify-between">
+                    {formErrors.message && (
+                      <p className="text-error text-xs sm:text-sm font-mono">
+                        ✗ {formErrors.message}
+                      </p>
+                    )}
+                    {!formErrors.message && formData.message.length >= 10 && (
+                      <p className="text-success text-xs sm:text-sm font-mono">
+                        ✓ Valid message
+                      </p>
+                    )}
+                    {formData.message.length >= 900 && (
+                      <p className="text-warning text-xs sm:text-sm font-mono ml-auto">
+                        ⚠ Nearing limit
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div className="mt-auto space-y-4">

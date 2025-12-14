@@ -12,6 +12,14 @@
     stroke-dashoffset: -100;
   }
 }
+@keyframes loading {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
 /* Perspective container for 3D transforms */
 .cyber-perspective {
   perspective: 1000px;
