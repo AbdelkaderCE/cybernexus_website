@@ -290,6 +290,10 @@ const MemberCard: React.FC<MemberCardProps> = ({
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={112}
+                    height={112}
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">

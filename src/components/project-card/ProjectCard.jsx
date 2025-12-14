@@ -1,5 +1,6 @@
 import { useState, memo } from "react";
 import { Github, Users, Calendar, Terminal, Zap } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const ProjectCard = memo(({ project, loading = false }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -248,6 +249,7 @@ const ProjectCard = memo(({ project, loading = false }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View source of ${name}`}
+                onClick={() => trackEvent("project_view_code", { id, name })}
                 className="relative group/btn overflow-hidden w-full sm:w-auto"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
@@ -264,6 +266,7 @@ const ProjectCard = memo(({ project, loading = false }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View demo of ${name}`}
+                onClick={() => trackEvent("project_launch", { id, name })}
                 className="relative group/btn overflow-hidden w-full sm:w-auto"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
@@ -278,6 +281,7 @@ const ProjectCard = memo(({ project, loading = false }) => {
               <button
                 className="relative group/btn overflow-hidden w-full"
                 aria-label={`View details of ${name}`}
+                onClick={() => trackEvent("project_view_details", { id, name })}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
                 <div className="relative inline-flex items-center justify-center gap-2 w-full min-h-[44px] px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg border-2 border-primary/50 hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 font-mono text-sm">

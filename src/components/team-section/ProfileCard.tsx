@@ -137,6 +137,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             alt={`${name} profile`}
             className="w-full h-full object-cover object-bottom transition-all duration-700 group-hover:scale-110 md:grayscale md:group-hover:grayscale-0"
             loading="lazy"
+            decoding="async"
+            width={480}
+            height={600}
           />
           {/* Cyan/Magenta chromatic aberration overlay on hover */}
           <div

@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo, ChangeEvent } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Mail, MapPin, Send, Terminal, Code2, Zap, Copy, ExternalLink, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/analytics";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -123,12 +124,14 @@ const ContactSection: React.FC = () => {
       setSubmitStatus("success");
       setFormData({ email: "", message: "" });
       toast.success("Message sent successfully! We'll get back to you soon.");
+      trackEvent("contact_send_message", { method: "simulated", valid: true });
 
       setTimeout(() => setSubmitStatus(null), 5000);
     } catch (error) {
       console.error("Error:", error);
       setSubmitStatus("error");
       toast.error("Failed to send message. Please try again.");
+      trackEvent("contact_send_error");
       setTimeout(() => setSubmitStatus(null), 5000);
     } finally {
       setIsSubmitting(false);
@@ -426,8 +429,10 @@ const ContactSection: React.FC = () => {
                         "https://www.google.com/maps/place/Ibn+Khaldoun+University/@35.350471,1.320944,15z",
                         "_blank"
                       );
+                      trackEvent("maps_open", { source: "contact_section" });
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-secondary/20 hover:bg-secondary/40 text-secondary border border-secondary/50 hover:border-secondary rounded-lg font-mono text-xs sm:text-sm font-bold transition-all duration-300 group"
+                    className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-secondary/20 hover:bg-secondary/40 text-secondary border border-secondary/50 hover:border-secondary rounded-lg font-mono text-xs sm:text-sm font-bold transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50"
+                    aria-label="Open location in Google Maps"
                   >
                     <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                     <span className="hidden sm:inline">OPEN_IN_MAPS</span>
@@ -438,8 +443,10 @@ const ContactSection: React.FC = () => {
                     onClick={() => {
                       navigator.clipboard.writeText("35.3505°N, 1.3209°E");
                       toast.success("Coordinates copied!");
+                      trackEvent("coords_copy", { source: "contact_section" });
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-accent/20 hover:bg-accent/40 text-accent border border-accent/50 hover:border-accent rounded-lg font-mono text-xs sm:text-sm font-bold transition-all duration-300 group"
+                    className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-accent/20 hover:bg-accent/40 text-accent border border-accent/50 hover:border-accent rounded-lg font-mono text-xs sm:text-sm font-bold transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
+                    aria-label="Copy coordinates to clipboard"
                   >
                     <Copy className="w-4 h-4 group-hover:scale-110 transition-transform" />
                     <span className="hidden sm:inline">COPY_COORDS</span>
@@ -452,8 +459,10 @@ const ContactSection: React.FC = () => {
                         "https://www.google.com/maps/dir/?api=1&destination=35.350471,1.320944",
                         "_blank"
                       );
+                      trackEvent("maps_directions", { source: "contact_section" });
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-primary/20 hover:bg-primary/40 text-primary border border-primary/50 hover:border-primary rounded-lg font-mono text-xs sm:text-sm font-bold transition-all duration-300 group"
+                    className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 bg-primary/20 hover:bg-primary/40 text-primary border border-primary/50 hover:border-primary rounded-lg font-mono text-xs sm:text-sm font-bold transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+                    aria-label="Open directions to location"
                   >
                     <Navigation className="w-4 h-4 group-hover:rotate-45 transition-transform" />
                     <span className="hidden sm:inline">DIRECTIONS</span>

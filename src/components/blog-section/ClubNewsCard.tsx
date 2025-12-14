@@ -30,6 +30,8 @@ const ClubNewsCard = memo<ClubNewsCardProps>(
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                   decoding="async"
+                  width={800}
+                  height={600}
                 />
 
                 {/* Featured Badge */}

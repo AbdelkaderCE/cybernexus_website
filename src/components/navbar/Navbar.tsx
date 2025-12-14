@@ -213,6 +213,7 @@ const Navbar = ({ theme, setTheme, handleScrollComponent }: NavbarProps) => {
                           ? "text-primary bg-primary/10"
                           : "text-base-content/70 hover:text-primary hover:bg-base-200"
                       }
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
                     `}
                     aria-label={`Navigate to ${item.name}`}
                   >
@@ -242,6 +243,13 @@ const Navbar = ({ theme, setTheme, handleScrollComponent }: NavbarProps) => {
                 className="relative text-base-content hover:text-primary transition-all duration-300 p-2 hover:bg-primary/10 rounded-lg"
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label={menuOpen ? "Close menu" : "Open menu"}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setMenuOpen(!menuOpen);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
               >
                 {menuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -295,6 +303,7 @@ const Navbar = ({ theme, setTheme, handleScrollComponent }: NavbarProps) => {
                           : "text-base-content hover:bg-base-200 border border-transparent hover:border-primary/20"
                       }
                       ${menuOpen ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"}
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
                     `}
                     style={{
                       transitionDelay: menuOpen ? `${index * 50}ms` : "0ms",

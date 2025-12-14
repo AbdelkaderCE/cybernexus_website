@@ -38,6 +38,8 @@ const ArticleCard = memo<ArticleCardProps>(
               className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
               loading="lazy"
               decoding="async"
+              width={640}
+              height={360}
             />
 
             {/* Gradient overlay */}
