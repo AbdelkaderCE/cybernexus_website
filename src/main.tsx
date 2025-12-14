@@ -33,5 +33,3 @@ root.render(
     </ErrorBoundary>
   </React.StrictMode>,
 );
-  </React.StrictMode>,
-);
